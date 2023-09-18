@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { IoIosArrowDown } from "react-icons/io";
 
-import Dropdown from "../element/Dropdown";
-
 interface NavbarProps {
   id: string;
   titleNavbar: string;

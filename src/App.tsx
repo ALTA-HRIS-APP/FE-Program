@@ -2,13 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Layout from "./component/Layout";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
-import Presensi from "./pages/Presensi";
-import TimeOff from "./pages/TimeOff";
-import Remburse from "./pages/Remburse";
-import Target from "./pages/Target";
-import Employe from "./pages/Employe";
+import Presensi from "./pages/Presensi/Presensi";
+import TimeOff from "./pages/TimeOff/TimeOff";
+import Remburse from "./pages/Rembursement/Remburse";
+import Target from "./pages/Target/Target";
+import Employe from "./pages/Employe/Employe";
 
 export default function App() {
   return (
