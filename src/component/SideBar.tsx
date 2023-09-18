@@ -67,15 +67,6 @@ const SideBar = () => {
           ))}
         </ul>
       </div>
-      <div className="h-screen flex-1 px-10 py-5">
-        <Header
-          id=""
-          title="Time Off"
-          name="Jheny Doe"
-          image="src\assets\person.png"
-          job="Manager"
-        />
-      </div>
     </div>
   );
 };
