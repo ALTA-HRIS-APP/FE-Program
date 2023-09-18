@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 interface headerProps {
@@ -9,8 +9,31 @@ interface headerProps {
   image?: string;
 }
 
-const Header: FC<headerProps> = ({ id, title, name, job, image }) => {
+const Header: FC<headerProps> = ({ id, name, job, image }) => {
   const location = useLocation();
+  const [pageTitle, setPageTitle] = useState("");
+
+  useEffect(() => {
+    const getTitleFromPath = (pathname: string) => {
+      switch (pathname) {
+        case "/Dashboard":
+          return "Dashboard";
+        case "/presensi":
+          return "Presensi";
+        case "/rembursement":
+          return "Rembursement";
+        case "/timeoff":
+          return "Time Off";
+        case "/target":
+          return "Target";
+        case "/employe":
+          return "Employee";
+        default:
+          return "Halaman Tidak Ditemukan";
+      }
+    };
+    setPageTitle(getTitleFromPath(location.pathname));
+  }, [location.pathname]);
 
   if (location.pathname === "/") {
     return null;
@@ -19,7 +42,7 @@ const Header: FC<headerProps> = ({ id, title, name, job, image }) => {
   return (
     <div className=" flex h-16  bg-white rounded-lg shadow items-center p-6 justify-between ">
       <div className=" justify-between items-center">
-        <h4 className="text-sky-900 text-base font-semibold">{title}</h4>
+        <h4 className="text-sky-900 text-base font-semibold">{pageTitle}</h4>
       </div>
       <div id={id} className="justify-start items-center gap-3 inline-flex">
         <img className="w-12 h-12 rounded-full" src={image} />

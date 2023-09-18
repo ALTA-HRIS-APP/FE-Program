@@ -3,12 +3,23 @@ import React from "react";
 import SideBar from "./SideBar";
 import Header from "./Header";
 
-const Layout = ({ children }) => {
+interface LayoutProps {
+  children: React.ReactElement;
+}
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <div className=" flex h-screen">
       <SideBar />
       <div className=" flex-1 flex flex-col py-5 px-10">
-        <main className=" p-4 flex-grow overflow-y-auto mt-3 ">{children}</main>
+        <Header
+          id=""
+          title="Presensi"
+          image="src\assets\person.png"
+          job="Manager"
+          name=" Jheni Doe"
+        />
+        <main className="flex-grow overflow-y-auto mt-5 ">{children}</main>
       </div>
     </div>
   );

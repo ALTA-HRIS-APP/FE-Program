@@ -1,48 +1,39 @@
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, Link } from "react-router-dom";
 
 const SideBar = () => {
   const location = useLocation();
+  const [open, setOpen] = useState(true);
+  const [activeMenu, setActiveMenu] = useState("");
+
+  const Menus = [
+    { title: "Dashboard", src: "Dashboard", path: "/Dashboard" },
+    { title: "Presensi", src: "Presensi", path: "/presensi" },
+    { title: "Rembursement", src: "Remburse", path: "/rembursement" },
+    { title: "Time Off", src: "TimeOff", path: "/timeoff" },
+    { title: "Target", src: "Target", path: "/target" },
+    { title: "Employe", src: "Employe", path: "/employe" },
+  ];
 
   if (location.pathname === "/") {
     return null;
   }
-
-  const [open, setOpen] = useState(true);
-  const [requestMenuOpen, setRequestMenuOpen] = useState(false);
-
-  const Menus = [
-    { title: "Dashboard", src: "/Dashboard" },
-    { title: "Presensi", src: "/Presensi" },
-    {
-      title: "Request",
-      src: "Request",
-      submenus: [
-        { title: "Reimbursement", src: "Remburse" },
-        { title: "Time Off", src: "TimeOff" },
-      ],
-    },
-    { title: "Target", src: "Target" },
-    { title: "Employe", src: "Employe" },
-  ];
 
   return (
     <div className="flex">
       <div
         className={` ${
           open ? "w-64" : "w-20 "
-        } bg-sky-900 h-screen p-5 pt-8 relative duration-300`}
+        } bg-sky-900 h-screen p-5  pt-8 relative duration-300`}
       >
         <img
           src="src\assets\control.png"
-          alt="Toggle Sidebar"
           className={`absolute cursor-pointer -right-3 top-9 w-7 border-dark-purple
            border-2 rounded-full  ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
         />
         <div className="flex gap-x-4 items-center">
           <img
-            alt="Logo"
             src="src\assets\logo.png"
             className={`cursor-pointer duration-500 ${
               open && "rotate-[360deg]"
@@ -51,37 +42,22 @@ const SideBar = () => {
         </div>
         <ul className="pt-12">
           {Menus.map((Menu, index) => (
-            <li
-              key={index}
-              className={`flex rounded-md p-2 cursor-pointer ${
-                requestMenuOpen && Menu.title === "Request"
-                  ? "bg-blue-600 text-white"
-                  : "hover:bg-sky-700 active:bg-blue-600 text-white"
-              } text-lg items-center font-semibold gap-x-4 
-              ${Menu.gap ? "mt-9" : "mt-2"}`}
-              onClick={() =>
-                Menu.title === "Request"
-                  ? setRequestMenuOpen(!requestMenuOpen)
-                  : setRequestMenuOpen(false)
-              }
-            >
-              <img src={`./src/assets/${Menu.src}.svg`} />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
-                {Menu.title}
-              </span>
-              {Menu.submenus && requestMenuOpen && (
-                <ul className="ml-4 mt-2">
-                  {Menu.submenus.map((submenu, subIndex) => (
-                    <li
-                      key={subIndex}
-                      className="cursor-pointer text-white hover:text-blue-400"
-                    >
-                      {submenu.title}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
+            <Link to={Menu.path} key={index}>
+              <li
+                className={`flex  rounded-md p-2 cursor-pointer hover:bg-sky-700 active:bg-blue-600 text-white text-lg items-center font-semibold gap-x-4 
+                ${Menu.gap ? "mt-12" : "mt-4"} ${
+                  location.pathname === Menu.path ? "bg-blue-600" : ""
+                } `}
+                onClick={() => setActiveMenu(Menu.title)}
+              >
+                <img src={`./src/assets/${Menu.src}.svg`} />
+                <span
+                  className={`${!open && "hidden"} origin-left duration-200 `}
+                >
+                  {Menu.title}
+                </span>
+              </li>
+            </Link>
           ))}
         </ul>
       </div>

@@ -5,13 +5,6 @@ import Header from "../component/Header";
 const Presensi = () => {
   return (
     <div>
-      <Header
-        id=""
-        title="Presensi"
-        image="src\assets\person.png"
-        job="Manager"
-        name=" Jheni Doe"
-      />
       <div>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
         exercitationem doloribus beatae autem animi, similique, voluptatibus hic
