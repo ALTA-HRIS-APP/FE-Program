@@ -1,4 +1,7 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import { IoIosArrowDown } from 'react-icons/io'
 
 
@@ -13,6 +16,35 @@ interface NavbarProps {
 }
 
 const Navbar: FC<NavbarProps> = ({ id, titleNavbar, namePerson, avatar, level }) => {
+
+    const role = Cookies.get("role");
+    const email = Cookies.get("email");
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        Swal.fire({
+            title: 'Are you sure want to Logout?',
+            showCancelButton: true,
+            cancelButtonText: "NO",
+            confirmButtonText: "YES",
+        }).then((result) => {
+            Cookies.remove('username');
+            Cookies.remove('token');
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: 'Success Logout',
+                confirmButtonText: 'OK',
+                cancelButtonText: 'Cancel',
+            }).then((response) => {
+                if (response?.isConfirmed) {
+                    navigate('/');
+                }
+            });
+        })
+
+    };
+
     // State untuk mengontrol tampilan dropdown
     const [dropdownOpen, setDropdownOpen] = useState(false)
 
@@ -47,7 +79,7 @@ const Navbar: FC<NavbarProps> = ({ id, titleNavbar, namePerson, avatar, level })
                             <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Profile</a>
                                 <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Settings</a>
-                                <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</a>
+                                <a onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</a>
                             </div>
                         </div>
                     )}
