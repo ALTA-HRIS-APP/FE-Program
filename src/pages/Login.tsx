@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 import Button from '../components/element/Button'
 import Potologin from "../assets/13.jpg"
-import Input from '../component/Input'
+import Input from '../components/element/Input'
 
 const Login: React.FC = () => {
 

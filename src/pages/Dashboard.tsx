@@ -5,12 +5,13 @@ import Navbar from '../components/layout/Navbar'
 
 const menuData = [
     {
-      label: 'Menu 1',
-      link: '/menu1',
+      label: 'DASHBOARD',
+      link: '/dashboard',
+      active: true
     },
     {
-      label: 'Menu 2',
-      link: '/menu2',
+      label: 'User Management',
+      link: '/user',
       submenu: [
         {
           label: 'Submenu 2.1',
@@ -26,7 +27,7 @@ const menuData = [
   ];
 
 const Dashboard = () => {
-    const [activePage, setActivePage ] = useState<string>('/menu1')
+    // const [activePage, setActivePage ] = useState<string>('/menu1')
     return (
         <div className="flex bg-DEE4EE">
             <Sidebar menuData={menuData} />
@@ -39,8 +40,8 @@ const Dashboard = () => {
                 level='Level 1'
                 />
                 {/* Main content */}
-                <div className="p-4 w-full h-full bg-white  m-5">
-                    <div className='w-1/2 h-full'>
+                <div className="p-4 max-w-full bg-white  m-5">
+                    <div className='w-42 h-34'>
                         <div>
                             <p>Input Field</p>
                         </div>
