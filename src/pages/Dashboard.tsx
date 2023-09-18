@@ -1,10 +1,10 @@
 import { useState } from "react";
-// import { Link } from 'react-router-dom'
+
 import Sidebar from "../components/layout/Sidebar";
 import Navbar from "../components/layout/Navbar";
 
 const menuData = [
-<<<<<<< HEAD
+
   {
     label: "Menu 1",
     link: "/menu1",
@@ -23,7 +23,6 @@ const menuData = [
       },
     ],
   },
-  // ...
 ];
 
 const Dashboard = () => {
@@ -44,7 +43,7 @@ const Dashboard = () => {
           <div className="w-1/2 h-full">
             <div>
               <p>Input Field</p>
-=======
+
     {
       label: 'DASHBOARD',
       link: '/dashboard',
@@ -89,7 +88,6 @@ const Dashboard = () => {
 
                     </div>
                 </div>
->>>>>>> 14fb1648689e143e2e8146d73d92edcfac2745f8
             </div>
           </div>
         </div>

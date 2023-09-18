@@ -13,7 +13,7 @@ const SideBar = () => {
 
   const Menus = [
     { title: "Dashboard", src: "/Dashboard" },
-    { title: "Presensi", src: "Presensi" },
+    { title: "Presensi", src: "/Presensi" },
     {
       title: "Request",
       src: "Request",

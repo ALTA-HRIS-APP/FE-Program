@@ -4,15 +4,9 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-<<<<<<< HEAD
 import Button from "../components/element/Button";
 import Potologin from "../assets/13.jpg";
-import Input from "../component/Input";
-=======
-import Button from '../components/element/Button'
-import Potologin from "../assets/13.jpg"
-import Input from '../components/element/Input'
->>>>>>> 14fb1648689e143e2e8146d73d92edcfac2745f8
+import Input from "../components/element/Input";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
