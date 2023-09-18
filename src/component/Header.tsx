@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { useLocation } from "react-router-dom";
 
 interface headerProps {
   id: string;
@@ -9,6 +10,12 @@ interface headerProps {
 }
 
 const Header: FC<headerProps> = ({ id, title, name, job, image }) => {
+  const location = useLocation();
+
+  if (location.pathname === "/") {
+    return null;
+  }
+
   return (
     <div className=" flex h-16  bg-white rounded-lg shadow items-center p-6 justify-between ">
       <div className=" justify-between items-center">
@@ -17,7 +24,7 @@ const Header: FC<headerProps> = ({ id, title, name, job, image }) => {
       <div id={id} className="justify-start items-center gap-3 inline-flex">
         <img className="w-12 h-12 rounded-full" src={image} />
         <div className="flex-col justify-start items-start inline-flex ">
-          <h4 className="text-sky-900 text-xl font-medium">{name}</h4>
+          <h4 className="text-sky-900 text-base font-medium">{name}</h4>
           <p className="text-neutral-500 text-xs font-medium">{job}</p>
         </div>
       </div>

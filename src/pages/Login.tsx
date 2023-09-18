@@ -1,57 +1,55 @@
-import { useState } from 'react'
-import Cookies from 'js-cookie'
-import Swal from 'sweetalert2'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { useState } from "react";
+import Cookies from "js-cookie";
+import Swal from "sweetalert2";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-import Button from '../components/element/Button'
-import Potologin from "../assets/13.jpg"
-import Input from '../component/Input'
+import Button from "../components/element/Button";
+import Potologin from "../assets/13.jpg";
+import Input from "../component/Input";
 
 const Login: React.FC = () => {
-
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = () => {
     const body = {
       email: email,
-      password: password
+      password: password,
     };
     axios
-    .post("http://pintu2.otixx.online/login", body)
-    .then((response) => {
-      const token = response?.data?.data?.token;
-      const email = response?.data?.data?.email;
-      const role = response?.data?.data?.role;
-      const name = response?.data?.data?.name;
+      .post("http://pintu2.otixx.online/login", body)
+      .then((response) => {
+        const token = response?.data?.data?.token;
+        const email = response?.data?.data?.email;
+        const role = response?.data?.data?.role;
+        const name = response?.data?.data?.name;
 
-      Swal.fire({
-        icon: "success",
-        title: "Success",
-        text: `Welcome to Dashboard, ${email}`,
-        confirmButtonText: "OK"
-      }).then((response) => {
-        if (response.isConfirmed){
-          Cookies.set("token", token);
-          Cookies.set("email", email);
-          Cookies.set("role", role);
-          navigate("/dashboard");
-        }
-      });
-    })
-    .catch((error) => {
-      console.log(error.response)
-      Swal.fire({
-        icon: "error",
-        title: "Error",
-        text: `Something Wrong : ${error}`,
-        confirmButtonText: "OK"
+        Swal.fire({
+          icon: "success",
+          title: "Success",
+          text: `Welcome to Dashboard, ${email}`,
+          confirmButtonText: "OK",
+        }).then((response) => {
+          if (response.isConfirmed) {
+            Cookies.set("token", token);
+            Cookies.set("email", email);
+            Cookies.set("role", role);
+            navigate("/dashboard");
+          }
+        });
       })
-    })
-  }
-
+      .catch((error) => {
+        console.log(error.response);
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: `Something Wrong : ${error}`,
+          confirmButtonText: "OK",
+        });
+      });
+  };
 
   return (
     <section className="w-screen h-screen bg-white">
@@ -78,12 +76,20 @@ const Login: React.FC = () => {
           />
           {/* <input type="text" /> */}
           <div className="w-60 my-5">
-            <Button id="login" label="Login" color='bg-blue-950' hover='bg-blue-850' width='full' height='12' onClick={handleLogin} />
+            <Button
+              id="login"
+              label="Login"
+              color="bg-blue-950"
+              hover="bg-blue-850"
+              width="full"
+              height="12"
+              onClick={handleLogin}
+            />
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
