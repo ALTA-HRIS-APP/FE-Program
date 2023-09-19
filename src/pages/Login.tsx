@@ -19,12 +19,12 @@ const Login: React.FC = () => {
       password: password,
     };
     axios
-      .post("http://pintu2.otixx.online/login", body)
-      .then((response) => {
-        const token = response?.data?.data?.token;
-        const email = response?.data?.data?.email;
-        const role = response?.data?.data?.role;
-        const name = response?.data?.data?.name;
+    .post("http://pintu2.otixx.online/login", body)
+    .then((response) => {
+      const token = response?.data?.data?.token;
+      const email = response?.data?.data?.email;
+      const role = response?.data?.data?.role;
+      // const name = response?.data?.data?.name;
 
         Swal.fire({
           icon: "success",

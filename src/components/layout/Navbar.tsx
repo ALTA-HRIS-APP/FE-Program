@@ -27,7 +27,7 @@ const Navbar: FC<NavbarProps> = ({
     Swal.fire({
       title: "Are you sure want to Logout?",
       showCancelButton: true,
-      cancelButtonText: "NO",
+      // cancelButtonText: "NO",
       confirmButtonText: "YES",
     }).then((result) => {
       Cookies.remove("username");

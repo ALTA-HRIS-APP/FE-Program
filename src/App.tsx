@@ -9,6 +9,8 @@ import TimeOff from "./pages/TimeOff/TimeOff";
 import Remburse from "./pages/Rembursement/Remburse";
 import Target from "./pages/Target/Target";
 import Employe from "./pages/Employe/Employe";
+import IndexRole from "./pages/RoleManagement/IndexRole";
+import IndexUser from "./pages/UserManagement/IndexUser";
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/User" element={<IndexUser />} />
+          <Route path="/Role" element={<IndexRole />} />
           <Route path="/Presensi" element={<Presensi />} />
           <Route path="/TimeOff" element={<TimeOff />} />
           <Route path="/Remburse" element={<Remburse />} />

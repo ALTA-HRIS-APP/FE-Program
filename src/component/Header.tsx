@@ -51,11 +51,11 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
   //fungsi logika untuk logout
   const handleLogout = () => {
     Swal.fire({
-      title: "Apakah anda ingin ?",
+      title: "Apakah anda ingin Logout?",
+      icon: "question",
       showCancelButton: true,
-      cancelButtonText: "NO",
       confirmButtonText: "YES",
-    }).then(() => {
+    }).then((tru) => {
       Cookies.remove("username");
       Cookies.remove("token");
       Swal.fire({
@@ -82,50 +82,52 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
       <div className=" justify-between items-center">
         <h4 className="text-sky-900 text-base font-semibold">{pageTitle}</h4>
       </div>
-      <div
-        id={id}
-        onClick={toggleDropdown}
-        className="justify-start items-center gap-3 inline-flex"
-      >
-        <img className="w-12 h-12 rounded-full" src={image} />
-        <div className="flex-col justify-start items-start inline-flex ">
-          <h4 className="text-sky-900 text-base font-medium">{name}</h4>
-          <p className="text-neutral-500 text-xs font-medium">{job}</p>
-        </div>
-        <IoIosArrowDown />
-      </div>
-      {dropdownOpen && (
-        <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-          <div
-            className="py-1"
-            role="menu"
-            aria-orientation="vertical"
-            aria-labelledby="options-menu"
-          >
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              role="menuitem"
-            >
-              Profile
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              role="menuitem"
-            >
-              Settings
-            </a>
-            <a
-              onClick={handleLogout}
-              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-              role="menuitem"
-            >
-              Sign out
-            </a>
+      <div className="relative inline-block text-left">
+        <button
+          className="flex items-center space-x-2"
+          onClick={toggleDropdown}
+          id={id}
+        >
+          <img className="w-12 h-12 rounded-full" src={image} />
+          <div className="flex-col justify-start items-start inline-flex ">
+            <h4 className="text-sky-900 text-base font-medium">{name}</h4>
+            <p className="text-neutral-500 text-xs font-medium">{job}</p>
           </div>
-        </div>
-      )}
+          <IoIosArrowDown />
+        </button>
+        {dropdownOpen && (
+          <div className="origin-top-right absolute mt-2 w-48 rounded-md shadow-lg bg-slate-300 ring-1 ring-black ring-opacity-5">
+            <div
+              className="py-1"
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="options-menu"
+            >
+              <a
+                href="#"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+              >
+                Profile
+              </a>
+              <a
+                href="#"
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+              >
+                Settings
+              </a>
+              <a
+                onClick={handleLogout}
+                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+              >
+                Sign out
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
