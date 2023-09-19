@@ -1,22 +1,30 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Login from "./pages/Login"
-import Dashboard from "./pages/Dashboard"
-import SideBar from "./component/SideBar"
-import IndexUser from "./pages/UserManagement/IndexUser"
-import AddUser from "./pages/UserManagement/AddUser"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Layout from "./component/Layout";
+import Dashboard from "./pages/Dashboard/Dashboard";
+
+import Presensi from "./pages/Presensi/Presensi";
+import TimeOff from "./pages/TimeOff/TimeOff";
+import Remburse from "./pages/Rembursement/Remburse";
+import Target from "./pages/Target/Target";
+import Employe from "./pages/Employe/Employe";
 import IndexRole from "./pages/RoleManagement/IndexRole"
 
 export default function App() {
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/SideBar" element={<SideBar />} />
-      <Route path="/User" element={<IndexUser />} />
-      <Route path="/AddUser" element={<AddUser />} />
-      <Route path="/Role" element={<IndexRole />} />
-    </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Presensi" element={<Presensi />} />
+          <Route path="/TimeOff" element={<TimeOff />} />
+          <Route path="/Remburse" element={<Remburse />} />
+          <Route path="/Target" element={<Target />} />
+          <Route path="/Employe" element={<Employe />} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
-  )
+  );
 }
