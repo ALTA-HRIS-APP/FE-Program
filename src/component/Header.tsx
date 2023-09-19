@@ -33,8 +33,8 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           return "Dashboard";
         case "/presensi":
           return "Presensi";
-        case "/rembursement":
-          return "Rembursement";
+        case "/reimbursement":
+          return "Reimbursement";
         case "/timeoff":
           return "Time Off";
         case "/target":
@@ -71,7 +71,6 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           }
         });
       }
-
     });
   };
 
@@ -86,7 +85,11 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
         <h4 className="text-sky-900 text-base font-semibold">{pageTitle}</h4>
       </div>
       <div className="relative inline-block text-left">
-        <button className="flex items-center space-x-2" onClick={toggleDropdown} id={id}>
+        <button
+          className="flex items-center space-x-2"
+          onClick={toggleDropdown}
+          id={id}
+        >
           <img className="w-12 h-12 rounded-full" src={image} />
           <div className="flex-col justify-start items-start inline-flex ">
             <h4 className="text-sky-900 text-base font-medium">{name}</h4>
@@ -127,7 +130,6 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           </div>
         )}
       </div>
-
     </div>
   );
 };

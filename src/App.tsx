@@ -6,13 +6,15 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 
 import Presensi from "./pages/Presensi/Presensi";
 import TimeOff from "./pages/TimeOff/TimeOff";
-import Remburse from "./pages/Rembursement/Remburse";
+import Reimbursement from "./pages/Reimbursement/Reimbursement";
 import Target from "./pages/Target/Target";
 import Employe from "./pages/Employe/Employe";
 import IndexRole from "./pages/RoleManagement/IndexRole";
 import IndexUser from "./pages/UserManagement/IndexUser";
+import axios from "axios";
 
 export default function App() {
+  axios.defaults.baseURL = "https://hris.belanjalagiyuk.shop/";
   return (
     <BrowserRouter>
       <Layout>
@@ -23,7 +25,7 @@ export default function App() {
           <Route path="/Role" element={<IndexRole />} />
           <Route path="/Presensi" element={<Presensi />} />
           <Route path="/TimeOff" element={<TimeOff />} />
-          <Route path="/Remburse" element={<Remburse />} />
+          <Route path="/Reimbursement" element={<Reimbursement />} />
           <Route path="/Target" element={<Target />} />
           <Route path="/Employe" element={<Employe />} />
         </Routes>
