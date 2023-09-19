@@ -17,8 +17,8 @@ const Table = () => {
     {
       id: 2,
       src: "person",
-      fullName: "John Doe",
-      employeId: "DEMO001",
+      fullName: "Jehny Doe",
+      employeId: "DEMO002",
       date: "14/06/22",
       ScheduleIn: "08:30",
       ScheduleOut: "16:30",
@@ -29,8 +29,8 @@ const Table = () => {
     {
       id: 3,
       src: "person",
-      fullName: "John Doe",
-      employeId: "DEMO001",
+      fullName: "Jihn Doe",
+      employeId: "DEMO003",
       date: "14/06/22",
       ScheduleIn: "08:30",
       ScheduleOut: "16:30",
@@ -41,8 +41,8 @@ const Table = () => {
     {
       id: 4,
       src: "person",
-      fullName: "John Doe",
-      employeId: "DEMO001",
+      fullName: "Juny Doe",
+      employeId: "DEMO004",
       date: "14/06/22",
       ScheduleIn: "08:30",
       ScheduleOut: "16:30",
@@ -64,7 +64,7 @@ const Table = () => {
           placeholder="Cari..."
         />
       </div>
-      <table className="min-w-full table-auto bg-white shadow ">
+      <table className="min-w-full table-auto bg-white shadow  ">
         <thead className=" bg-sky-900">
           <tr className=" text-white ">
             <th className="px-4 py-2">No</th>
@@ -81,8 +81,8 @@ const Table = () => {
         <tbody>
           {data.map((item) => (
             <tr key={item.id}>
-              <td className="border px-4 py-2">{item.id}</td>
-              <td className="border px-4 py-2 ">
+              <td className=" px-4 py-2">{item.id}</td>
+              <td className="px-4 py-2 ">
                 <div className="flex gap-3 items-center font-semibold">
                   <img
                     src="src\assets\person.png"
@@ -92,13 +92,13 @@ const Table = () => {
                   {item.fullName}
                 </div>
               </td>
-              <td className="border px-4 py-2">{item.employeId}</td>
-              <td className="border px-4 py-2">{item.date}</td>
-              <td className="border px-4 py-2">{item.ScheduleIn}</td>
-              <td className="border px-4 py-2">{item.ScheduleOut}</td>
-              <td className="border px-4 py-2">{item.ClockIn}</td>
-              <td className="border px-4 py-2">{item.ClockOut}</td>
-              <td className="border px-4 py-2">{item.Overtime}</td>
+              <td className="px-4 py-2 text-center">{item.employeId}</td>
+              <td className=" px-4 py-2 text-center">{item.date}</td>
+              <td className=" px-4 py-2 text-center">{item.ScheduleIn}</td>
+              <td className=" px-4 py-2 text-center">{item.ScheduleOut}</td>
+              <td className=" px-4 py-2 text-center">{item.ClockIn}</td>
+              <td className=" px-4 py-2 text-center">{item.ClockOut}</td>
+              <td className=" px-4 py-2 text-center">{item.Overtime}</td>
             </tr>
           ))}
         </tbody>

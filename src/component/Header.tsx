@@ -55,7 +55,7 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
       showCancelButton: true,
       cancelButtonText: "NO",
       confirmButtonText: "YES",
-    }).then((tru) => {
+    }).then(() => {
       Cookies.remove("username");
       Cookies.remove("token");
       Swal.fire({
