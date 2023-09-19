@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 
-interface Modalclass {
-  isOpen: boolean;
+interface Modalprops {
+  isOpen: Boolean;
   onClose?: React.MouseEventHandler;
   children?: React.ReactNode;
 }
 
-const Modal: FC<Modalclass> = ({ isOpen, onClose, children }) => {
+const Modal: FC<Modalprops> = ({ isOpen, onClose, children }) => {
   const preference = {
     modalOverlay: isOpen
       ? "fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
