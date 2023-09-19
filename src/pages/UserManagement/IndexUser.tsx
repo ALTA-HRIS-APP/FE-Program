@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
-import Axios from "axios";
-import Cookies from "js-cookie";
+import axios from "axios";
+// import Cookies from "js-cookie";
 
 
 import Sidebar from "../../components/layout/Sidebar";
@@ -29,38 +29,54 @@ const menuData = [
             },
         ],
     },
-    // ...
+    {
+        label: 'DASHBOARD',
+        link: '/dashboard',
+        active: false
+    },
 ];
 
 const IndexUser = () => {
 
-    const [users, setUsers] = useState<[]>([]);
-    const token = Cookies.get("token");
+    const [data, setData] = useState<any[]>([]);
+    // const token = Cookies.get("token");
 
     const navigate = useNavigate();
     const handleAddUser = () => {
         navigate('/AddUser');
     }
 
+    // const getAllUser = () => {
+    //     if (token === undefined) {
+    //         navigate("/");
+    //     } else {
+    //         Axios
+    //             .get("http://pintu2.otixx.online/user")
+    //             // .get("http://pintu2.otixx.online/user", {
+    //             //     headers: {
+    //             //         Authorization: `Bearer ${token}`
+    //             //     },
+    //             // })
+    //             .then((response) => {
+    //                 console.log(response?.data);
+    //                 setUser(response?.data);
+    //             })
+    //             .catch((error) => {
+    //                 console.log(error);
+    //             })
+    //     }
+    // }
+
     const getAllUser = () => {
-        if (token === undefined) {
-            navigate("/");
-        } else {
-            Axios
-                .get("http://pintu2.otixx.online/user")
-                // .get("http://pintu2.otixx.online/login", {
-                //     headers: {
-                //         Authorization: `Bearer ${token}`
-                //     },
-                // })
-                .then((response) => {
-                    console.log(response?.data);
-                    setUsers(response?.data);
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
-        }
+        axios
+        .get("http://pintu2.otixx.online/user")
+        .then((response) => {
+            console.log("hasil:",response?.data);
+            setData(response?.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }
 
     useEffect(() => {
@@ -109,7 +125,7 @@ const IndexUser = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {/* {users.map((item: any, index) => (
+                                            {data && data.map((item: any, index) => (
                                                 <tr key={item.id}>
                                                     <td className="p-2 border text-left">{index + 1}</td>
                                                     <td className="p-2 border text-left">{item.id}</td>
@@ -119,7 +135,7 @@ const IndexUser = () => {
                                                     <td className="p-2 border text-center">{item.role.nama}</td>
                                                     <td className="p-2 border text-center">{item.status? "Active" : "Inactive"}</td>
                                                 </tr>
-                                            ))} */}
+                                            ))};
 
                                         </tbody>
                                     </table>

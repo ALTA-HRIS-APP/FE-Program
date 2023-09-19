@@ -1,9 +1,9 @@
-import React from 'react'
+// import React from 'react'
 
-interface tableProps {
-    id: number;
-    nama_lengkap: string,
-}
+// interface tableProps {
+//     id: number;
+//     nama_lengkap: string,
+// }
 
 const Table = () => {
   return (

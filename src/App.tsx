@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard"
 import SideBar from "./component/SideBar"
 import IndexUser from "./pages/UserManagement/IndexUser"
 import AddUser from "./pages/UserManagement/AddUser"
+import IndexRole from "./pages/RoleManagement/IndexRole"
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
       <Route path="/SideBar" element={<SideBar />} />
       <Route path="/User" element={<IndexUser />} />
       <Route path="/AddUser" element={<AddUser />} />
+      <Route path="/Role" element={<IndexRole />} />
     </Routes>
     </BrowserRouter>
   )

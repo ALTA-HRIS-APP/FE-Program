@@ -25,7 +25,7 @@ const Login: React.FC = () => {
       const token = response?.data?.data?.token;
       const email = response?.data?.data?.email;
       const role = response?.data?.data?.role;
-      const name = response?.data?.data?.name;
+      // const name = response?.data?.data?.name;
 
       Swal.fire({
         icon: "success",
