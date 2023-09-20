@@ -43,19 +43,22 @@ const SideBar = () => {
             }`}
           />
         </div>
-        <ul className="pt-12">
+        <ul className="pt-5">
           {Menus.map((Menu, index) => (
             <Link to={Menu.path} key={index}>
               <li
-                className={`flex  rounded-md p-2 cursor-pointer hover:bg-sky-700 active:bg-blue-600 text-white text-lg items-center font-semibold gap-x-4 
-                ${Menu.gap ? "mt-12" : "mt-4"} ${
+                className={`flex  rounded-md p-2 cursor-pointer hover:bg-sky-700 active:bg-blue-600 text-white  items-center font-semibold gap-x-5 
+                ${Menu.gap ? "mt-12" : "mt-2"} ${
                   location.pathname === Menu.path ? "bg-blue-600" : ""
                 } `}
                 onClick={() => setActiveMenu(Menu.title)}
               >
-                <img src={`./src/assets/${Menu.src}.svg`} />
+                <img
+                  className=" w-5 h-5"
+                  src={`./src/assets/${Menu.src}.svg`}
+                />
                 <span
-                  className={`${!open && "hidden"} origin-left duration-200 `}
+                  className={`${!open && "hidden"} origin-left duration-500 `}
                 >
                   {Menu.title}
                 </span>

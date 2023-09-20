@@ -65,23 +65,20 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "YES",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Cookies.remove("username");
-        Cookies.remove("token");
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Success Logout",
-          confirmButtonText: "OK",
-          cancelButtonText: "Cancel",
-        }).then((response) => {
-          if (response?.isConfirmed) {
-            navigate("/");
-          }
-        });
-      }
-
+    }).then((tru) => {
+      Cookies.remove("username");
+      Cookies.remove("token");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Success Logout",
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+      }).then((response) => {
+        if (response?.isConfirmed) {
+          navigate("/");
+        }
+      });
     });
   };
 
@@ -96,7 +93,11 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
         <h4 className="text-sky-900 text-base font-semibold">{pageTitle}</h4>
       </div>
       <div className="relative inline-block text-left">
-        <button className="flex items-center space-x-2" onClick={toggleDropdown} id={id}>
+        <button
+          className="flex items-center space-x-2"
+          onClick={toggleDropdown}
+          id={id}
+        >
           <img className="w-12 h-12 rounded-full" src={image} />
           <div className="flex-col justify-start items-start inline-flex ">
             <h4 className="text-sky-900 text-base font-medium">{name}</h4>
@@ -130,7 +131,6 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           </div>
         )}
       </div>
-
     </div>
   );
 };
