@@ -13,6 +13,7 @@ import Employe from "./pages/Employe/Employe";
 import IndexRole from "./pages/RoleManagement/IndexRole";
 import IndexUser from "./pages/UserManagement/IndexUser";
 import AddUser from "./pages/UserManagement/AddUser";
+import DetailUser from "./pages/UserManagement/DetailUser";
 
 export default function App() {
   axios.defaults.baseURL = "https://project2.otixx.online/"
@@ -24,6 +25,7 @@ export default function App() {
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/User" element={<IndexUser />} />
           <Route path="/AddUser" element={<AddUser />} />
+          <Route path="/DetailUser/:id" element={<DetailUser />} />
           <Route path="/Role" element={<IndexRole />} />
           <Route path="/Presensi" element={<Presensi />} />
           <Route path="/TimeOff" element={<TimeOff />} />

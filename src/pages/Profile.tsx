@@ -41,11 +41,6 @@ const Profile = () => {
         <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
           
             <table>
-              {/* {profile ? (
-                
-              ) : (
-                
-              )} */}
               <tr>
                 <td>Nama</td>
                 <td>:</td>

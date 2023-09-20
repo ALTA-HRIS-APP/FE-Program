@@ -27,15 +27,30 @@ const AddUser = () => {
     }
     const [roleOption, setRoleOption] = useState([]);
     const getRoleData = () => {
-        axios
-            .get("role")
-            .then((response) => {
-                console.log("hasil : ", response?.data?.data);
-                setRoleOption(response?.data?.data);
+        if (token === undefined) {
+            Swal.fire({
+                icon: "error",
+                title: "You Don't Have Access in this Page...",
+                text: "GO BACK!!!",
+                backdrop: "#fff",
+                confirmButtonText: "OK"
+            }).then((response) => {
+                if (response.isConfirmed) {
+                    navigate("/");
+                }
             })
-            .catch((error) => {
-                console.log(error);
-            })
+        } else {
+            axios
+                .get("role")
+                .then((response) => {
+                    console.log("hasil : ", response?.data?.data);
+                    setRoleOption(response?.data?.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+
     }
     useEffect(() => {
         getDivision();
@@ -107,7 +122,7 @@ const AddUser = () => {
                 <Button
                     id='Back'
                     label='Back'
-                    color='bg-blue-500'
+                    color='bg-primary'
                     hover='bg-blue-700'
                     width='32'
                     height='10'

@@ -35,6 +35,8 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           return "User Management";
         case "/AddUser":
           return "Add User";
+        case "/DetailUser/:id":
+          return "Detil User";
         case "/Role":
           return "Role Management";
         case "/Division":
