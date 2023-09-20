@@ -7,13 +7,14 @@ interface inputProps {
     type?: string;
     placeholder?: string;
     value?: string;
+    width?: string;
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const Input: FC<inputProps> = ({id, label, name, type, placeholder, value, onChange}) => {
+const Input: FC<inputProps> = ({id, label, name, type, placeholder, value,width, onChange}) => {
   return (
     <div className="mb-4">
-      <label className="block text-gray-700 font-semibold mb-2">{label}</label>
+      <label className={`block text-gray-700 font-semibold mb-2 ${width}`}>{label}</label>
       <input
         id={id}
         type={type}

@@ -50,7 +50,7 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
         case "/employe":
           return "Employe";
         case "/profile":
-          return "Profile";
+          return "User Profile";
         default:
           return "Halaman Tidak Ditemukan";
       }
