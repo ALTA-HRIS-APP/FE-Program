@@ -1,7 +1,13 @@
 import React from "react";
 
+import TableTimeOff from "./TableTimeOff";
+
 const TimeOff = () => {
-  return <div>TimeOff</div>;
+  return (
+    <div>
+      <TableTimeOff />
+    </div>
+  );
 };
 
 export default TimeOff;
