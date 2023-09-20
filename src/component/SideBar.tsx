@@ -8,8 +8,8 @@ const SideBar = () => {
 
   const Menus = [
     { title: "Dashboard", src: "Dashboard", path: "/Dashboard" },
-    { title: "User Management", src: "Dashboard", path: "/User" },
-    { title: "Role Management", src: "Dashboard", path: "/Role" },
+    { title: "User Management", src: "user-management", path: "/User" },
+    { title: "Role Management", src: "management", path: "/Role" },
     { title: "Employee Level", src: "Dashboard", path: "/user" },
     { title: "Presensi", src: "Presensi", path: "/presensi" },
     { title: "Rembursement", src: "Remburse", path: "/rembursement" },

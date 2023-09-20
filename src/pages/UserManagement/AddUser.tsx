@@ -1,55 +1,33 @@
-// import React from 'react'
-
-import Sidebar from "../../components/layout/Sidebar"
-import Navbar from "../../components/layout/Navbar"
-
-const menuData = [
-    {
-        label: 'DASHBOARD',
-        link: '/dashboard',
-        active: false
-    },
-    {
-        label: 'User Management',
-        link: '/user',
-        active: true,
-        submenu: [
-            {
-                label: 'Submenu 2.1',
-                link: '/menu2/submenu1',
-            },
-            {
-                label: 'Submenu 2.2',
-                link: '/menu2/submenu2',
-            },
-        ],
-    },
-    // ...
-];
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import Button from '../../components/element/Button'
 
 const AddUser = () => {
-    return (
-        <div className="flex bg-DEE4EE">
-            <Sidebar menuData={menuData} />
-            <div className="flex-grow">
-                <Navbar
-                    id='Add User Management'
-                    titleNavbar='Add User Management'
-                    namePerson='John Doe'
-                    avatar='https://i.pravatar.cc/300'
-                    level='Level 1'
-                />
-                {/* Main content */}
-                <div className="p-4 max-w-full bg-white  m-5">
-                    <div className='w-42 h-34'>
-                        <div>
-                            <p>Add User Management</p>
-                        </div>
 
-                    </div>
+    const navigate = useNavigate();
+    const handleBack = () => {
+        navigate(-1)
+    }
+
+    return (
+        <div>
+            <main>
+                <Button
+                id='Back'
+                label='Back'
+                color='bg-blue-500'
+                hover='bg-blue-700'
+                width='w-20'
+                height='h-10'
+                src='arrow-left'
+                onClick={handleBack}
+                />
+                <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
+                    sjsjs
                 </div>
-            </div>
+            </main>
         </div>
+
     )
 }
 
