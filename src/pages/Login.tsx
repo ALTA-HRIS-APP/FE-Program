@@ -19,12 +19,12 @@ const Login: React.FC = () => {
       password: password,
     };
     axios
-    .post("login", body)
-    .then((response) => {
-      const token = response?.data?.data?.token;
-      const email = response?.data?.data?.email;
-      const role = response?.data?.data?.role;
-      // const name = response?.data?.data?.name;
+      .post("login", body)
+      .then((response) => {
+        const token = response?.data?.data?.token;
+        const email = response?.data?.data?.email;
+        const role = response?.data?.data?.role;
+        // const name = response?.data?.data?.name;
 
         Swal.fire({
           icon: "success",
@@ -58,9 +58,7 @@ const Login: React.FC = () => {
           <img src={Potologin} width={400} height={400} />
         </div>
         <div className="w-full h-screen flex flex-col text-#29568A justify-center items-center">
-          <div>
-            
-          </div>
+          <div></div>
           <Input
             id="email"
             name="email"
@@ -79,7 +77,7 @@ const Login: React.FC = () => {
             value={password}
             onChange={(e: any) => setPassword(e.target.value)}
           />
-          {/* <input type="text" /> */}
+
           <div className="w-60 my-5">
             <Button
               id="login"
@@ -90,7 +88,7 @@ const Login: React.FC = () => {
               height="12"
               src="login"
               onClick={handleLogin}
-            /> */}
+            />
           </div>
         </div>
       </div>
