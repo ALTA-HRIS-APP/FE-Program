@@ -1,147 +1,49 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import Cookie from 'js-cookie';
+import Swal from 'sweetalert2';
 
 import Button from '../../components/element/Button';
 
 const IndexUser = () => {
-
-    //     id: "02ffb084-c74a-4888-bae1-a9c3a76ef8ee",
-    //     nama_lengkap: "admin",
-    //     surel: "admin@gmail.com",
-    //     no_hp: "082335554778",
-    //     jabatan: "c-level",
-    //     kata_sandi: "$2b$10$TOMdB1N.izcbvOfH3ASKb.Z2lfUCEJF11BlIQEkKg18zhcoHDwMWS",
-    //     status: false,
-    //     createdAt: "2023-09-14T12:36:09.000Z",
-    //     updatedAt: "2023-09-14T12:36:09.000Z",
-    //     devisiId: "a9b6efa2-52e7-11ee-89fb-a5765d73286f",
-    //     roleId: "5c3c1884-88ae-4dc7-a46a-bc34c2335e61",
-    //     devisi: {
-    //         id: "a9b6efa2-52e7-11ee-89fb-a5765d73286f",
-    //         nama: "tidak ada",
-    //         createdAt: "2023-09-14T17:15:26.000Z",
-    //         updatedAt: "2023-09-14T17:15:26.000Z"
-    //     },
-    //     role: {
-    //         id: "5c3c1884-88ae-4dc7-a46a-bc34c2335e61",
-    //         nama: "superadmin",
-    //         createdAt: "2023-09-14T10:02:06.000Z",
-    //         updatedAt: "2023-09-14T10:02:06.000Z"
-    //     }
-    // },
-    // {
-    //     id: "02ffb084-c74a-4888-bae1-a9c3a76ef8ee",
-    //     nama_lengkap: "admin",
-    //     surel: "admin@gmail.com",
-    //     no_hp: "082335554778",
-    //     jabatan: "c-level",
-    //     kata_sandi: "$2b$10$TOMdB1N.izcbvOfH3ASKb.Z2lfUCEJF11BlIQEkKg18zhcoHDwMWS",
-    //     status: true,
-    //     createdAt: "2023-09-14T12:36:09.000Z",
-    //     updatedAt: "2023-09-14T12:36:09.000Z",
-    //     devisiId: "a9b6efa2-52e7-11ee-89fb-a5765d73286f",
-    //     roleId: "5c3c1884-88ae-4dc7-a46a-bc34c2335e61",
-    //     devisi: {
-    //         id: "a9b6efa2-52e7-11ee-89fb-a5765d73286f",
-    //         nama: "tidak ada",
-    //         createdAt: "2023-09-14T17:15:26.000Z",
-    //         updatedAt: "2023-09-14T17:15:26.000Z"
-    //     },
-    //     role: {
-    //         id: "5c3c1884-88ae-4dc7-a46a-bc34c2335e61",
-    //         nama: "superadmin",
-    //         createdAt: "2023-09-14T10:02:06.000Z",
-    //         updatedAt: "2023-09-14T10:02:06.000Z"
-    //     }
-    // },
-    // {
-    //     id: "02ffb084-c74a-4888-bae1-a9c3a76ef8ee",
-    //     nama_lengkap: "admin",
-    //     surel: "admin@gmail.com",
-    //     no_hp: "082335554778",
-    //     jabatan: "c-level",
-    //     kata_sandi: "$2b$10$TOMdB1N.izcbvOfH3ASKb.Z2lfUCEJF11BlIQEkKg18zhcoHDwMWS",
-    //     status: true,
-    //     createdAt: "2023-09-14T12:36:09.000Z",
-    //     updatedAt: "2023-09-14T12:36:09.000Z",
-    //     devisiId: "a9b6efa2-52e7-11ee-89fb-a5765d73286f",
-    //     roleId: "5c3c1884-88ae-4dc7-a46a-bc34c2335e61",
-    //     devisi: {
-    //         id: "a9b6efa2-52e7-11ee-89fb-a5765d73286f",
-    //         nama: "tidak ada",
-    //         createdAt: "2023-09-14T17:15:26.000Z",
-    //         updatedAt: "2023-09-14T17:15:26.000Z"
-    //     },
-    //     role: {
-    //         id: "5c3c1884-88ae-4dc7-a46a-bc34c2335e61",
-    //         nama: "superadmin",
-    //         createdAt: "2023-09-14T10:02:06.000Z",
-    //         updatedAt: "2023-09-14T10:02:06.000Z"
-    //     }
-    // },
-    // {
-    //     id: "02ffb084-c74a-4888-bae1-a9c3a76ef8ee",
-    //     nama_lengkap: "admin",
-    //     surel: "admin@gmail.com",
-    //     no_hp: "082335554778",
-    //     jabatan: "c-level",
-    //     kata_sandi: "$2b$10$TOMdB1N.izcbvOfH3ASKb.Z2lfUCEJF11BlIQEkKg18zhcoHDwMWS",
-    //     status: true,
-    //     createdAt: "2023-09-14T12:36:09.000Z",
-    //     updatedAt: "2023-09-14T12:36:09.000Z",
-    //     devisiId: "a9b6efa2-52e7-11ee-89fb-a5765d73286f",
-    //     roleId: "5c3c1884-88ae-4dc7-a46a-bc34c2335e61",
-    //     devisi: {
-    //         id: "a9b6efa2-52e7-11ee-89fb-a5765d73286f",
-    //         nama: "tidak ada",
-    //         createdAt: "2023-09-14T17:15:26.000Z",
-    //         updatedAt: "2023-09-14T17:15:26.000Z"
-    //     },
-    //     role: {
-    //         id: "5c3c1884-88ae-4dc7-a46a-bc34c2335e61",
-    //         nama: "superadmin",
-    //         createdAt: "2023-09-14T10:02:06.000Z",
-    //         updatedAt: "2023-09-14T10:02:06.000Z"
-    //     }
-    // },
+    const token = Cookie.get('token');
+    const navigate = useNavigate();
     const [User, setUser] = useState<[]>([]);
 
-    // const getAllUser = () => {
-    //     if (token === undefined) {
-    //         navigate("/");
-    //     } else {
-    //         Axios
-    //             .get("http://pintu2.otixx.online/user")
-    //             // .get("http://pintu2.otixx.online/user", {
-    //             //     headers: {
-    //             //         Authorization: `Bearer ${token}`
-    //             //     },
-    //             // })
-    //             .then((response) => {
-    //                 console.log(response?.data);
-    //                 setUser(response?.data);
-    //             })
-    //             .catch((error) => {
-    //                 console.log(error);
-    //             })
-    //     }
-    // }
-
-    const getAllUsers = () => {
-        axios
-            .get("http://project2.otixx.online/user")
-            .then((response) => {
-                console.log("hasil:", response?.data?.meta?.data);
-                setUser(response?.data?.meta?.data);
+    const getAllUser = () => {
+        if (token === undefined) {
+            Swal.fire({
+                icon: "error",
+                title: "You Don't Have Access in this Page...",
+                text: "GO BACK!!!",
+                backdrop: "#fff",
+                confirmButtonText: "OK"
+            }).then((response) => {
+                if (response.isConfirmed) {
+                    navigate("/");
+                }
             })
-            .catch((error) => {
-                console.log(error);
-            })
-    };
+        } else {
+            axios
+                .get("user")
+                // .get("http://pintu2.otixx.online/user", {
+                //     headers: {
+                //         Authorization: `Bearer ${token}`
+                //     },
+                // })
+                .then((response) => {
+                    console.log(response?.data?.meta?.data);
+                    setUser(response?.data?.meta?.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+    }
 
     useEffect(() => {
-        getAllUsers();
+        getAllUser();
     }, []);
 
     const DetailTo = (id: number) => {
@@ -150,8 +52,56 @@ const IndexUser = () => {
                 id: id
             }
         });
+    };
+
+    const handleEdit = (id: number) => {
+        navigate(`/user/${id}`, {
+            state: {
+                id: id,
+            }
+        });
     }
-    const navigate = useNavigate();
+
+    const handleDelete = (id: number) => {
+        Swal.fire({
+            title: 'Are You Sure For Delete?',
+            showCancelButton: true,
+            confirmButtonText: 'Yes!',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                axios
+                    .delete(`user/${id}`)
+                    // .delete(`user/${id}`, {
+                    //     headers: {
+                    //         Authorization: `Bearer ${token}`,
+                    //     },
+                    // })
+                    .then((response) => {
+                        console.log(response);
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: response.data.message,
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            getAllUser();
+                        });
+                    })
+                    .catch((error) => {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Failed",
+                            text: `Something went wrong : ${error}`,
+                            confirmButtonText: "OK",
+                        });
+                    });
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
+    };
+
     const handleAddUser = () => {
         navigate('/AddUser');
     }
@@ -163,7 +113,7 @@ const IndexUser = () => {
                     <Button
                         id='Add Button'
                         label='Add User'
-                        color='bg-sky-500'
+                        color='bg-primary'
                         hover='bg-sky-700'
                         onClick={handleAddUser}
                         src={'user-add'}
@@ -207,14 +157,14 @@ const IndexUser = () => {
                                                 id='Edit Button'
                                                 color='bg-warning'
                                                 hover='bg-yellow-200'
-                                                onClick={() => DetailTo(item?.id)}
+                                                onClick={() => handleEdit(item?.id)}
                                                 src='edit-3'
                                             />
                                             <Button
                                                 id='Delete Button'
                                                 color='bg-danger'
                                                 hover='bg-red-200'
-                                                onClick={() => DetailTo(item?.id)}
+                                                onClick={() => handleDelete(item?.id)}
                                                 src='delete-2'
                                             />
                                         </td>
