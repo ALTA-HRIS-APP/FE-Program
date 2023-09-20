@@ -19,7 +19,7 @@ const Login: React.FC = () => {
       password: password,
     };
     axios
-    .post("http://pintu2.otixx.online/login", body)
+    .post("login", body)
     .then((response) => {
       const token = response?.data?.data?.token;
       const email = response?.data?.data?.email;

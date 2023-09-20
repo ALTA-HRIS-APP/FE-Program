@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -31,6 +31,14 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
       switch (pathname) {
         case "/Dashboard":
           return "Dashboard";
+        case "/User":
+          return "User Management";
+        case "/AddUser":
+          return "Add User";
+        case "/Role":
+          return "Role Management";
+        case "/Division":
+          return "Devision Management";
         case "/presensi":
           return "Presensi";
         case "/rembursement":
@@ -41,6 +49,8 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           return "Target";
         case "/employe":
           return "Employe";
+        case "/profile":
+          return "Profile";
         default:
           return "Halaman Tidak Ditemukan";
       }
@@ -104,18 +114,11 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
               aria-labelledby="options-menu"
             >
               <a
-                href="#"
+                href="/profile"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 role="menuitem"
               >
                 Profile
-              </a>
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                role="menuitem"
-              >
-                Settings
               </a>
               <a
                 onClick={handleLogout}

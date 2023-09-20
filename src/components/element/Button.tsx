@@ -7,18 +7,19 @@ interface btnProps {
     width?: string;
     height?: string;
     hover?: string;
+    src?: string;
     onClick?: React.MouseEventHandler;
 }
 
-const Button: FC<btnProps> = ({ id, label, color, width, height, hover, onClick }) => {
+const Button: FC<btnProps> = ({ id, label, color, width, height, hover, src, onClick }) => {
     return (
         <>
             <button
                 id={id}
                 onClick={onClick}
-                className={`text-white ${color} w-${width} h-${height} ${hover} rounded-md px-4 py-2 font-semibold`}
+                className={`flex gap-3 text-white ${color} w-${width} h-${height} hover:${hover} rounded-md px-4 py-2 font-semibold`}
             >
-                {label}
+                {label} <img src={`./src/assets/${src}.svg`} alt={`${src}`} />
             </button>
         </>
     )
