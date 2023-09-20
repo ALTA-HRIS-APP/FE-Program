@@ -48,9 +48,11 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
         case "/target":
           return "Target";
         case "/employe":
-          return "Employe";
+          return "Employe Management";
         case "/profile":
           return "Profile";
+        case "/AddEmploye":
+          return "Add Employe Management";
         default:
           return "Halaman Tidak Ditemukan";
       }

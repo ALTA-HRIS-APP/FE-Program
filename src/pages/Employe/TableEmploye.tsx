@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const TableTimeOff = () => {
+const TableEmploye = () => {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
@@ -63,4 +63,4 @@ const TableTimeOff = () => {
   );
 };
 
-export default TableTimeOff;
+export default TableEmploye;
