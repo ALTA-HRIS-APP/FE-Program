@@ -2,21 +2,38 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 
 import Button from '../../components/element/Button';
 
 const IndexRole = () => {
+    const token = Cookies.get('token');
     const [role, setRole] = useState<[]>([]);
     const getAllRole = () => {
-        axios
-            .get("http://project2.otixx.online/role")
-            .then((response) => {
-                console.log("hasil : ", response?.data?.data);
-                setRole(response?.data?.data);
+        if (token === undefined) {
+            Swal.fire({
+                icon: "error",
+                title: "You Don't Have Access in this Page...",
+                text: "GO BACK!!!",
+                backdrop: "#fff",
+                confirmButtonText: "OK"
+            }).then((response) => {
+                if (response.isConfirmed) {
+                    navigate("/");
+                }
             })
-            .catch((error) => {
-                console.log(error);
-            })
+        } else {
+            axios
+                .get("http://project2.otixx.online/role")
+                .then((response) => {
+                    console.log("hasil : ", response?.data?.data);
+                    setRole(response?.data?.data);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+
     }
 
     useEffect(() => {
@@ -38,7 +55,7 @@ const IndexRole = () => {
             if (result.isConfirmed) {
                 axios
                     .delete(`role/${id}`)
-                    // .delete(`http://54.252.240.166/mentees/${id}`, {
+                    // .delete(`role/${id}`, {
                     //     headers: {
                     //         Authorization: `Bearer ${token}`,
                     //     },

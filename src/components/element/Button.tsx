@@ -26,7 +26,7 @@ const Button: FC<btnProps> = ({
       <button
         id={id}
         onClick={onClick}
-        className={`flex gap-3 text-white ${color} w-${width} h-${height} hover:${hover} rounded-md px-4 py-2 font-semibold`}
+        className={`flex gap-3 justify-center items-center text-white ${color} w-${width} h-${height} hover:${hover} rounded-md px-4 py-2 font-semibold`}
       >
         {label} <img src={`./src/assets/${src}.svg`} alt={`${src}`} />
       </button>

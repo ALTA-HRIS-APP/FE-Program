@@ -32,23 +32,29 @@ const Profile = () => {
   useEffect(() => {
     getProfile();
   }, []);
-  console.log("profile:", profile);
-
-
   return (
     <div>
-      <main>
-        <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
-          
-            <table>
-              <tr>
-                <td>Nama</td>
-                <td>:</td>
-                <td>{profile.nama_lengkap}</td>
-                <td>{profile.jabatan}</td>
-              </tr>
-              
-            </table>
+      <main className='flex gap-3'>
+        <div className='p-4 h-full w-4/12 bg-white rounded-lg mt-5 place-self-center'>
+          <img className="w-64 h-64 p-1 rounded-full" src="./src/assets/person.png" alt="user Profile" />
+          <h3 className='text-center'>{profile.nama_lengkap}</h3>
+          <p className='text-center'>{profile.jabatan}</p>
+        </div>
+        <div className='p-4 w-8/12 h-full bg-white rounded-lg mt-5'>
+
+          <table>
+            <tr>
+              <td>Nama</td>
+              <td>:</td>
+              <td>{profile.nama_lengkap}</td>
+
+            </tr>
+            <tr>
+              <td>Jabatan</td>
+              <td>:</td>
+              <td>{profile.jabatan}</td>
+            </tr>
+          </table>
         </div>
       </main>
     </div>
