@@ -22,9 +22,9 @@ const Login: React.FC = () => {
       .post("login", body)
       .then((response) => {
         const token = response?.data?.data?.token;
-        // const email = response?.data?.data?.email;
+        const email = response?.data?.data?.email;
         const role = response?.data?.data?.role;
-        // // const name = response?.data?.data?.name;
+        // const name = response?.data?.data?.name;
 
         Swal.fire({
           icon: "success",
@@ -58,9 +58,7 @@ const Login: React.FC = () => {
           <img src={Potologin} width={400} height={400} />
         </div>
         <div className="w-full h-screen flex flex-col text-#29568A justify-center items-center">
-          <div>
-            
-          </div>
+          <div></div>
           <Input
             id="email"
             name="email"
@@ -79,14 +77,9 @@ const Login: React.FC = () => {
             value={password}
             onChange={(e: any) => setPassword(e.target.value)}
           />
-          {/* <input type="text" /> */}
-          <div className=" my-5 text-center text-white">
-            <button
-              className="bg-blue-700 hover:bg-blue-500 rounded-lg w-64 h-12"
-              onClick={handleLogin}>
-                <img src="assets/login.svg" alt="" />
-                Login</button>
-            {/* <Button
+
+          <div className="w-60 my-5">
+            <Button
               id="login"
               label="Login"
               color="bg-blue-950"
@@ -95,7 +88,7 @@ const Login: React.FC = () => {
               height="12"
               src="login"
               onClick={handleLogin}
-            /> */}
+            />
           </div>
         </div>
       </div>

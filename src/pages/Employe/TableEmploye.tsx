@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const TableTimeOff = () => {
+const TableEmploye = () => {
   const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const TableTimeOff = () => {
       );
       setData(response.data.data); // Ganti "response.data" menjadi "response.data.data" sesuai dengan struktur data yang diterima
     } catch (error) {
-      console.error(error);
+      console.error("Gagal mengambil data dari API: ", error);
     }
   };
 
@@ -26,12 +26,12 @@ const TableTimeOff = () => {
           <tr className="text-white">
             <th className="px-4 py-2">No</th>
             <th className="px-4 py-2">Full Name</th>
-            <th className="px-4 py-2">Time Of Type</th>
-            <th className="px-4 py-2">Start Date</th>
-            <th className="px-4 py-2">Long Leave</th>
-            <th className="px-4 py-2">Description</th>
-            <th className="px-4 py-2">Proofs</th>
-            <th className="px-4 py-2">Status</th>
+            <th className="px-4 py-2">No NIK</th>
+            <th className="px-4 py-2">File KK</th>
+            <th className="px-4 py-2">No NPWP</th>
+            <th className="px-4 py-2">File NPWP</th>
+            <th className="px-4 py-2">No BPJS</th>
+            <th className="px-4 py-2">File BPJS</th>
             <th className="px-4 py-2">Action</th>
           </tr>
         </thead>
@@ -63,4 +63,4 @@ const TableTimeOff = () => {
   );
 };
 
-export default TableTimeOff;
+export default TableEmploye;

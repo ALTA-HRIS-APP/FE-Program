@@ -7,9 +7,10 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Presensi from "./pages/Presensi/Presensi";
 import TimeOff from "./pages/TimeOff/TimeOff";
-// import Remburse from "./pages/Rembursement/Remburse";
+
 import Target from "./pages/Target/Target";
 import Employe from "./pages/Employe/Employe";
+import AddEmploye from "./pages/Employe/AddEmploye";
 import IndexRole from "./pages/RoleManagement/IndexRole";
 import AddRole from "./pages/RoleManagement/AddRole";
 import IndexUser from "./pages/UserManagement/IndexUser";
@@ -17,7 +18,7 @@ import AddUser from "./pages/UserManagement/AddUser";
 import DetailUser from "./pages/UserManagement/DetailUser";
 
 export default function App() {
-  axios.defaults.baseURL = "https://project2.otixx.online/"
+  axios.defaults.baseURL = "http://project2.otixx.online/";
   return (
     <BrowserRouter>
       <Layout>
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/Profile" element={<Profile />} />
         </Routes>
       </Layout>
+
     </BrowserRouter>
   );
 }

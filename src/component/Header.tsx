@@ -17,8 +17,8 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const role = Cookies.get("role");
-  const email = Cookies.get("email");
+  // const role = Cookies.get("role");
+  // const email = Cookies.get("email");
   const navigate = useNavigate();
 
   const toggleDropdown = () => {
@@ -52,9 +52,11 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
         case "/target":
           return "Target";
         case "/employe":
-          return "Employe";
+          return "Employe Management";
+        case "/AddEmploye":
+          return "Add Employe Management";
         case "/profile":
-          return "User Profile";
+          return "Profile";
         default:
           return "Halaman Tidak Ditemukan";
       }
@@ -62,14 +64,13 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
     setPageTitle(getTitleFromPath(location.pathname));
   }, [location.pathname]);
 
-  //fungsi logika untuk logout
   const handleLogout = () => {
     Swal.fire({
       title: "Apakah anda ingin Logout?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "YES",
-    }).then((tru) => {
+    }).then(() => {
       Cookies.remove("username");
       Cookies.remove("token");
       Swal.fire({
@@ -86,7 +87,6 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
     });
   };
 
-  // logika untuk tida menampilkan header pada landingpage
   if (location.pathname === "/") {
     return null;
   }
@@ -110,7 +110,7 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           <IoIosArrowDown />
         </button>
         {dropdownOpen && (
-          <div className="origin-top-right absolute mt-2 w-48 rounded-md shadow-lg bg-slate-300 ring-1 ring-black ring-opacity-5">
+          <div className="origin-top-right absolute mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ">
             <div
               className="py-1"
               role="menu"
