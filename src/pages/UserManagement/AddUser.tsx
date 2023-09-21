@@ -4,8 +4,7 @@ import axios from "axios";
 import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 
-import Button from '../../components/element/Button'
-import Input from '../../components/element/Input'
+import Button from '../../components/element/Button';
 
 const AddUser = () => {
     const token = Cookies.get('token');

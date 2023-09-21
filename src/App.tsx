@@ -11,6 +11,7 @@ import TimeOff from "./pages/TimeOff/TimeOff";
 import Target from "./pages/Target/Target";
 import Employe from "./pages/Employe/Employe";
 import IndexRole from "./pages/RoleManagement/IndexRole";
+import AddRole from "./pages/RoleManagement/AddRole";
 import IndexUser from "./pages/UserManagement/IndexUser";
 import AddUser from "./pages/UserManagement/AddUser";
 import DetailUser from "./pages/UserManagement/DetailUser";
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/AddUser" element={<AddUser />} />
           <Route path="/DetailUser/:id" element={<DetailUser />} />
           <Route path="/Role" element={<IndexRole />} />
+          <Route path="/AddRole" element={<AddRole />} />
           <Route path="/Presensi" element={<Presensi />} />
           <Route path="/TimeOff" element={<TimeOff />} />
           {/* <Route path="/Remburse" element={<Remburse />} /> */}

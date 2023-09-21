@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import Button from '../../components/element/Button';
 
@@ -26,6 +27,46 @@ const IndexRole = () => {
     const handleAddRole = () => {
         navigate('/AddRole');
     }
+
+    const handleDelete = (id: number) => {
+        Swal.fire({
+            title: 'Are You Sure For Delete?',
+            showCancelButton: true,
+            cancelButtonText: "No, Cancel!",
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                    .delete(`role/${id}`)
+                    // .delete(`http://54.252.240.166/mentees/${id}`, {
+                    //     headers: {
+                    //         Authorization: `Bearer ${token}`,
+                    //     },
+                    // })
+                    .then((response) => {
+                        console.log(response);
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: response.data.message,
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            getAllRole();
+                        });
+                    })
+                    .catch((error) => {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Failed",
+                            text: `Something went wrong : ${error}`,
+                            confirmButtonText: "OK",
+                        });
+                    });
+            } else if (result.dismiss) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
+    };
 
     return (
         <div>
@@ -73,7 +114,7 @@ const IndexRole = () => {
                                                 id='Delete Button'
                                                 color='bg-danger'
                                                 hover='bg-red-200'
-                                                // onClick={() => DetailTo(item?.id)}
+                                                onClick={() => handleDelete(item?.id)}
                                                 src='delete-2'
                                             />
                                         </td>
