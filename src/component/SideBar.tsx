@@ -10,7 +10,7 @@ const SideBar = () => {
     { title: "Dashboard", src: "Dashboard", path: "/Dashboard" },
     { title: "User Management", src: "user-management", path: "/User" },
     { title: "Role Management", src: "management", path: "/Role" },
-    { title: "Employee Level", src: "Dashboard", path: "/user" },
+    { title: "Employee Level", src: "employee-job", path: "/EmployeeLevel" },
     { title: "Presensi", src: "Presensi", path: "/presensi" },
     { title: "Rembursement", src: "Remburse", path: "/rembursement" },
     { title: "Time Off", src: "time-management-svgrepo-com", path: "/timeoff" },

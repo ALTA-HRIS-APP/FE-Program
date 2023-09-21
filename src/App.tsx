@@ -16,9 +16,11 @@ import AddRole from "./pages/RoleManagement/AddRole";
 import IndexUser from "./pages/UserManagement/IndexUser";
 import AddUser from "./pages/UserManagement/AddUser";
 import DetailUser from "./pages/UserManagement/DetailUser";
+import EmployeeLevel from "./pages/EmployeeLevel/indexEmployeeLevel";
+import AddEmployeeLevel from "./pages/EmployeeLevel/AddEmployeeLevel";
 
 export default function App() {
-  axios.defaults.baseURL = "http://project2.otixx.online/";
+  axios.defaults.baseURL = "https://project2.otixx.online/";
   return (
     <BrowserRouter>
       <Layout>
@@ -30,6 +32,8 @@ export default function App() {
           <Route path="/DetailUser/:id" element={<DetailUser />} />
           <Route path="/Role" element={<IndexRole />} />
           <Route path="/AddRole" element={<AddRole />} />
+          <Route path="/EmployeeLevel" element={<EmployeeLevel />} />
+          <Route path="/AddEmployeeLevel" element={<AddEmployeeLevel />} />
           <Route path="/Presensi" element={<Presensi />} />
           <Route path="/TimeOff" element={<TimeOff />} />
           {/* <Route path="/Remburse" element={<Remburse />} /> */}
