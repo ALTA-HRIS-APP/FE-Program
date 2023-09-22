@@ -1,28 +1,63 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-import Button from '../../components/element/Button'
+import Button from '../../components/element/Button';
 
-const AddRole = () => {
-    const token = Cookies.get('token');
+interface EditRoleProps {
+    id: string;
+    nama: string;
+    description: string;
+    status: boolean;
+}
+const EditRole = () => {
+    const location = useLocation();
+    const id = location?.state?.id;
     const navigate = useNavigate();
+    const token = Cookies.get('token');
     const handleBack = () => {
-        navigate(-1);
+        navigate(-1)
     }
-    const [formRole, setFormRole] = useState({
+    const [editRole, setEditRole] = useState<EditRoleProps>({
+        id: '',
         nama: '',
         description: '',
-        status: ''
+        status: false,
     });
     const handleChange = (e: any) => {
-        setFormRole({...formRole, [e.target.name]: e.target.value})
+        const { name, value } = e.target;
+        setEditRole({
+            ...editRole,
+            [name]: name === 'status' ? value === 'true' : value,
+        });
+    };
+
+    const getEditRole = (id: any) => {
+        axios
+            .get(`role/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+            .then((response) => {
+                console.log("hasil get: ", response?.data?.data);
+                setEditRole(response?.data?.data);
+            })
+            .catch((error) => {
+                console.log("Error:", error);
+            })
+
     }
-    const handleSubmmit = (e: any) => {
+
+    useEffect(() => {
+        getEditRole(id);
+    }, [id]);
+
+    const handleSubmit = (e: any) => {
         e.preventDefault();
-        axios.post('role', formRole, {
+        axios.put('user', editRole, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -34,15 +69,15 @@ const AddRole = () => {
                 text: response.data.message,
                 confirmButtonText: "OK",
             }).then(() => {
-                navigate('/Role');
-            }).catch((error) => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: error.response.data.message,
-                    confirmButtonText: "OK",
-                });
-            })
+                navigate('/User');
+            });
+        }).catch((error) => {
+            Swal.fire({
+                icon: "error",
+                title: "Field",
+                text: `Something went Wrong: ${error}`,
+                confirmButtonText: "OK"
+            });
         })
     }
 
@@ -53,14 +88,16 @@ const AddRole = () => {
                     <Button
                         id='Back'
                         label='Back'
-                        src='arrow-left'
                         color='bg-primary'
                         hover='bg-blue-700'
+                        width='32'
+                        height='10'
+                        src='arrow-left'
                         onClick={handleBack}
                     />
                 </div>
                 <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
-                    <form onSubmit={handleSubmmit}>
+                    <form onSubmit={handleSubmit}>
                         <div className='md:w-3/4 mx-5'>
                             <div className='mb-4'>
                                 <label
@@ -72,7 +109,7 @@ const AddRole = () => {
                                     id='nama'
                                     name='nama'
                                     placeholder='Input Nama Role...'
-                                    value={formRole.nama}
+                                    value={editRole.nama}
                                     onChange={handleChange}
                                     required
                                     autoComplete='off'
@@ -81,15 +118,15 @@ const AddRole = () => {
                             </div>
                             <div className='mb-4'>
                                 <label
-                                    htmlFor="description"
+                                    htmlFor="nama_lengkap"
                                     className='block text-gray-700 font-semibold mb-2'
-                                >Deskripsi</label>
+                                >Nama Lengkap</label>
                                 <textarea
                                     rows={5}
-                                    id='description'
-                                    name='description'
-                                    placeholder='Input Deskripsi...'
-                                    value={formRole.description}
+                                    id='nama_lengkap'
+                                    name='nama_lengkap'
+                                    placeholder='Input Nama Lengkap'
+                                    value={editRole.description}
                                     onChange={handleChange}
                                     required
                                     autoComplete='off'
@@ -100,29 +137,33 @@ const AddRole = () => {
                                 <label
                                     htmlFor="status"
                                     className='block text-gray-700 font-semibold mb-2'
-                                >status</label>
+                                >Status</label>
                                 <select
                                     id='status'
                                     name='status'
-                                    value={formRole.status}
+                                    value={editRole.status.toString()}
                                     onChange={handleChange}
                                     className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
                                 >
                                     <option value="">== Pilih Opsi ==</option>
-                                    <option value="true">Active</option>
-                                    <option value="false">InActive</option>
+                                    <option value="true">ACTIVE</option>
+                                    <option value="false">INACTIVE</option>
                                 </select>
                             </div>
-                            <div className='flex justify-end text-center mt-8'>
-                                <button type='submit' className='bg-primary hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-lg flex gap-3'>Submit<img src="./src/assets/save-2.svg" alt="save-2" /></button>
-                            </div>
                         </div>
-
+                        <div className='flex justify-end text-center'>
+                            <button
+                                type='submit'
+                                className='bg-primary hover:bg-blue-500 text-white  font-bold py-2 px-4 rounded-lg flex gap-3'
+                            >Submit
+                                <img src="./src/assets/save-2.svg" alt="save-2" />
+                            </button>
+                        </div>
                     </form>
                 </div>
-            </main >
-        </div >
+            </main>
+        </div>
     )
 }
 
-export default AddRole
+export default EditRole

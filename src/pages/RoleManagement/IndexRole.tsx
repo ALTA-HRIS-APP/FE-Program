@@ -44,6 +44,14 @@ const IndexRole = () => {
         navigate('/AddRole');
     }
 
+    const handleEdit = (id: number) => {
+        navigate(`/EditRole/${id}`, {
+            state: {
+                id: id,
+            }
+        });
+    }
+
     const handleDelete = (id: number) => {
         Swal.fire({
             title: 'Are You Sure For Delete?',
@@ -121,7 +129,7 @@ const IndexRole = () => {
                                                 id='Edit Button'
                                                 color='bg-warning'
                                                 hover='bg-yellow-200'
-                                                // onClick={() => DetailTo(item?.id)}
+                                                onClick={() => handleEdit(item?.id)}
                                                 src='edit-3'
                                             />
                                             <Button

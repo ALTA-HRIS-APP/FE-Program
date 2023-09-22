@@ -9,7 +9,7 @@ import Button from '../../components/element/Button'
 const TambahDevisi = () => {
     const token = Cookies.get('token');
     const navigate = useNavigate();
-    const handleBack = (e: any) => {
+    const handleBack = () => {
         navigate(-1);
     }
     const [formDevisi, setFormDevisi] = useState({

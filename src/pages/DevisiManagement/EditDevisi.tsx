@@ -18,22 +18,17 @@ const EditDevisi = () => {
     const handleBack = () => {
         navigate(-1)
     }
-    const [userDevisi, setUserDevisi] = useState<EditDevisiProps>({
-        nama: '',
+    const [getDevisi, setGetDevisi] = useState<EditDevisiProps>({
+        nama: ''
     })
     const handleChange = (e: any) => {
-        const { name, value } = e.target;
-        setUserDevisi({
-            ...userDevisi,
-            [name]: name === 'status' ? value === 'true' : value,
-        });
+        setGetDevisi({ ...getDevisi, [e.target.name]: e.target.value });
     }
     const getEditDevisi = (id: any) => {
         axios
             .get(`devisi/${id}`)
             .then((response) => {
-                console.log("hasil get: ", response?.data?.data);
-                setUserDevisi(response?.data?.data);
+                setGetDevisi(response?.data?.data);
             })
             .catch((error) => {
                 console.log("Error:", error);
@@ -43,11 +38,12 @@ const EditDevisi = () => {
 
     useEffect(() => {
         getEditDevisi(id);
-    });
+    }, [id]);
 
     const handleSubmit = (e: any) => {
+        console.log("Data:", getDevisi);
         e.preventDefault();
-        axios.put('devisi', userDevisi, {
+        axios.put(`devisi/${id}`, getDevisi, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -99,7 +95,7 @@ const EditDevisi = () => {
                                     id='nama'
                                     name='nama'
                                     placeholder='Input Nama Devisi...'
-                                    value={userDevisi.nama}
+                                    value={getDevisi.nama}
                                     onChange={handleChange}
                                     required
                                     autoComplete='off'

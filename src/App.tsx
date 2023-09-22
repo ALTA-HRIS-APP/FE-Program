@@ -7,19 +7,19 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Presensi from "./pages/Presensi/Presensi";
 import TimeOff from "./pages/TimeOff/TimeOff";
-
 import Target from "./pages/Target/Target";
 import Employe from "./pages/Employe/Employe";
 import IndexRole from "./pages/RoleManagement/IndexRole";
 import AddRole from "./pages/RoleManagement/AddRole";
+import EditRole from "./pages/RoleManagement/EditRole";
 import IndexUser from "./pages/UserManagement/IndexUser";
 import AddUser from "./pages/UserManagement/AddUser";
 import DetailUser from "./pages/UserManagement/DetailUser";
 import EditUser from "./pages/UserManagement/EditUser";
 import EmployeeLevel from "./pages/EmployeeLevel/indexEmployeeLevel";
-import AddEmployeeLevel from "./pages/EmployeeLevel/AddEmployeeLevel";
+import EditEmployeeLevel from "./pages/EmployeeLevel/EditEmployeeLevel";
 import IndexDevisi from "./pages/DevisiManagement/IndexDevisi";
-import TambahDevisi from "./pages/DevisiManagement/tambahDevisi";
+import TambahDevisi from "./pages/DevisiManagement/TambahDevisi";
 import EditDevisi from "./pages/DevisiManagement/EditDevisi";
 
 
@@ -37,15 +37,14 @@ export default function App() {
           <Route path="/EditUser/:id" element={<EditUser />} />
           <Route path="/Role" element={<IndexRole />} />
           <Route path="/AddRole" element={<AddRole />} />
+          <Route path="/EditRole/:id" element={<EditRole />} />
           <Route path="/EmployeeLevel" element={<EmployeeLevel />} />
-          <Route path="/AddEmployeeLevel" element={<AddEmployeeLevel />} />
+          <Route path="/EditEmployeeLevel/:id" element={<EditEmployeeLevel />} />
           <Route path="/Presensi" element={<Presensi />} />
-          <Route path="/AddPresensi" element={<AddPresensi />} />
-
           <Route path="/TimeOff" element={<TimeOff />} />
           <Route path="/Target" element={<Target />} />
           <Route path="/Employe" element={<Employe />} />
-          <Route path="/AddEmploye" element={<AddEmploye />} />
+          {/* <Route path="/AddEmploye" element={<AddEmploye />} /> */}
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Devisi" element={<IndexDevisi />} />
           <Route path="/TambahDevisi" element={<TambahDevisi />} />
