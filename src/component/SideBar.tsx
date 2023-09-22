@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 const SideBar = () => {
@@ -16,6 +16,11 @@ const SideBar = () => {
     { title: "Time Off", src: "time-management-svgrepo-com", path: "/timeoff" },
     { title: "Target", src: "Target", path: "/target" },
     { title: "Employe", src: "Employe", path: "/employe" },
+    {
+      title: "User Reimbursement",
+      src: "Remburse",
+      path: "/reimbursement/:id",
+    },
   ];
 
   if (location.pathname === "/") {
@@ -27,7 +32,7 @@ const SideBar = () => {
       <div
         className={` ${
           open ? "w-64" : "w-20 "
-        } bg-sky-900 h-screen p-5  pt-8 relative duration-300`}
+        } bg-sky-900 h-full p-5  pt-8 relative duration-300`}
       >
         <img
           src="src\assets\control.png"

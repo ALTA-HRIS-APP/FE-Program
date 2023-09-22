@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
@@ -35,6 +35,8 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           return "Presensi";
         case "/reimbursement":
           return "Reimbursement";
+        case "/reimbursement/:id":
+          return "User Reimbursement";
         case "/timeoff":
           return "Time Off";
         case "/target":
