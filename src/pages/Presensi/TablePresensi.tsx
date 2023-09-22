@@ -1,6 +1,22 @@
 import React from "react";
 
-const TablePresensi = ({ data }) => {
+interface PresensiData {
+  id: number;
+  nama_lengkap: string;
+  date: string;
+  jam_masuk: string;
+  jam_keluar: string;
+  check_in: string;
+  check_out: string;
+  overtime_masuk: string;
+  overtime_keluar: string;
+}
+
+interface TablePresensiProps {
+  data: PresensiData[];
+}
+
+const TablePresensi: React.FC<TablePresensiProps> = ({ data }) => {
   return (
     <div className="container mx-auto mt-4 bg-white p-2 rounded-lg shadow ">
       <table className="min-w-full table-auto bg-white text-sm">
@@ -22,10 +38,8 @@ const TablePresensi = ({ data }) => {
           {data.map((item, index) => (
             <tr key={item.id}>
               <td className="px-4 py-2">{index + 1}</td>
-              <td className="px-4 py-2">
-                <h3 className="flex gap-3 items-center font-semibold">
-                  {item.full_name}
-                </h3>
+              <td className="px-4 py-2 font-semibold text-center">
+                {item.nama_lengkap}
               </td>
               <td className="px-4 py-2 text-center">{item.id}</td>
               <td className="px-4 py-2 text-center">{item.date}</td>

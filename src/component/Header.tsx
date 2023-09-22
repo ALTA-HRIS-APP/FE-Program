@@ -55,6 +55,8 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           return "Rembursement";
         case "/timeoff":
           return "Time Off";
+        case "/AddTimeOff":
+          return "Add Time Off";
         case "/target":
           return "Target";
         case "/employe":

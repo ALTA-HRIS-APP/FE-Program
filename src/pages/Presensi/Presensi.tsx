@@ -1,23 +1,18 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React from "react";
+
+import { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 
 import TablePresensi from "./TablePresensi";
-import Button from "../../components/element/Button";
 
-interface PresensiData {
-  full_name: string;
-  date: string;
-  // Sesuaikan dengan struktur data sebenarnya
-}
-
-const Presensi: React.FC = () => {
-  const [cariNama, setCariNama] = useState<string>("");
-  const [tanggalFilter, setTanggalFilter] = useState<Date | null>(null);
-  const [data, setData] = useState<PresensiData[]>([]);
-  const [filteredData, setFilteredData] = useState<PresensiData[]>([]);
+const Presensi = () => {
+  const [cariNama, setCariNama] = useState("");
+  const [tanggalFilter, setTanggalFilter] = useState(null);
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -36,7 +31,7 @@ const Presensi: React.FC = () => {
     fetchData();
   }, []);
 
-  const handleCari = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCari = (e) => {
     const keyword = e.target.value;
     setCariNama(keyword);
     filterData(keyword, tanggalFilter);
@@ -46,8 +41,8 @@ const Presensi: React.FC = () => {
     filterData(cariNama, tanggalFilter);
   };
 
-  const filterData = (keyword: string, tanggal: Date | null) => {
-    let filteredData: PresensiData[] = data;
+  const filterData = (keyword, tanggal) => {
+    let filteredData = data;
 
     if (keyword) {
       filteredData = data.filter((item) =>
@@ -63,10 +58,6 @@ const Presensi: React.FC = () => {
     }
 
     setFilteredData(filteredData);
-  };
-
-  const handleAddPresensi = () => {
-    navigate("/AddPresensi");
   };
 
   return (
@@ -95,14 +86,6 @@ const Presensi: React.FC = () => {
             placeholder="Cari Nama"
             value={cariNama}
             onChange={handleCari}
-          />
-          <Button
-            id="AddPresensi"
-            label="Add Presensi"
-            color="bg-sky-500"
-            hover="bg-sky-700"
-            onClick={handleAddPresensi}
-            src={"adduser"}
           />
         </div>
       </div>
