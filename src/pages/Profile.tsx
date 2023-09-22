@@ -3,12 +3,14 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 interface profileProps {
-  nama_lengkap: string;
-  jabatan: string;
+  id: string, 
+  nama_lengkap?: string;
+  jabatan?: string;
 }
 
 const Profile = () => {
   const [profile, setProfile] = useState<profileProps>({
+    id: '',
     nama_lengkap: '',
     jabatan: '',
   });
@@ -41,13 +43,17 @@ const Profile = () => {
           <p className='text-center'>{profile.jabatan}</p>
         </div>
         <div className='p-4 w-8/12 h-full bg-white rounded-lg mt-5'>
-
           <table>
             <tr>
-              <td>Nama</td>
+              <td>Id</td>
+              <td>:</td>
+              <td>{profile.id}</td>
+
+            </tr>
+            <tr>
+              <td>Nama Lengkap</td>
               <td>:</td>
               <td>{profile.nama_lengkap}</td>
-
             </tr>
             <tr>
               <td>Jabatan</td>

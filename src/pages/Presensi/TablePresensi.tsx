@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 
 interface PresensiData {
   id: number;
@@ -35,7 +35,7 @@ const TablePresensi: React.FC<TablePresensiProps> = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
+          {data.map((item: any, index: any) => (
             <tr key={item.id}>
               <td className="px-4 py-2">{index + 1}</td>
               <td className="px-4 py-2 font-semibold text-center">

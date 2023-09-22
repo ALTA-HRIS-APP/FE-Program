@@ -35,7 +35,7 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           return "User Management";
         case "/AddUser":
           return "Add User";
-        case "/DetailUser/:id":
+        case "/DetailUser":
           return "Detil User";
         case "/Role":
           return "Role Management";
@@ -49,10 +49,12 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           return "Add Employee Level Management";
         case "/presensi":
           return "Presensi";
+        case "/reimbursement":
+          return "Reimbursement";
+        case "/reimbursement/:id":
+          return "User Reimbursement";
         case "/AddPresensi":
           return "Add Presensi";
-        case "/rembursement":
-          return "Rembursement";
         case "/timeoff":
           return "Time Off";
         case "/AddTimeOff":
@@ -65,6 +67,10 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           return "Add Employe Management";
         case "/profile":
           return "Profile";
+        case "/Devisi":
+          return "Devisi Management";
+        case "/TambahDevisi":
+          return "Tambah Devisi Management";
         default:
           return "Halaman Tidak Ditemukan";
       }

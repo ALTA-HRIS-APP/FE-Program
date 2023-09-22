@@ -1,17 +1,15 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Cookie from 'js-cookie';
 import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 
 import Button from '../../components/element/Button';
 
-const IndexUser = () => {
-    const token = Cookie.get('token');
-    const navigate = useNavigate();
-    const [User, setUser] = useState<[]>([]);
-
-    const getAllUser = () => {
+const IndexDevisi = () => {
+    const token = Cookies.get('token');
+    const [role, setRole] = useState<[]>([]);
+    const getAllRole = () => {
         if (token === undefined) {
             Swal.fire({
                 icon: "error",
@@ -26,14 +24,10 @@ const IndexUser = () => {
             })
         } else {
             axios
-                .get("user", {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    },
-                })
+                .get("devisi")
                 .then((response) => {
-                    console.log(response?.data?.meta?.data);
-                    setUser(response?.data?.meta?.data);
+                    console.log("hasil : ", response?.data?.data);
+                    setRole(response?.data?.data);
                 })
                 .catch((error) => {
                     console.log(error);
@@ -42,19 +36,16 @@ const IndexUser = () => {
     }
 
     useEffect(() => {
-        getAllUser();
+        getAllRole();
     }, []);
 
-    const DetailTo = (id: number) => {
-        navigate(`/DetailUser/${id}`, {
-            state: {
-                id: id
-            }
-        });
-    };
+    const navigate = useNavigate();
+    const hanldeAddDevisi = () => {
+        navigate('/TambahDevisi');
+    }
 
     const handleEdit = (id: number) => {
-        navigate(`/EditUser/${id}`, {
+        navigate(`/EditDevisi/${id}`, {
             state: {
                 id: id,
             }
@@ -65,17 +56,16 @@ const IndexUser = () => {
         Swal.fire({
             title: 'Are You Sure For Delete?',
             showCancelButton: true,
-            confirmButtonText: 'Yes!',
+            cancelButtonText: "No, Cancel!",
+            confirmButtonText: 'Yes, delete it!',
         }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
                 axios
-                    .delete(`user/${id}`)
-                    // .delete(`user/${id}`, {
-                    //     headers: {
-                    //         Authorization: `Bearer ${token}`,
-                    //     },
-                    // })
+                    .delete(`devisi/${id}`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    })
                     .then((response) => {
                         console.log(response);
                         Swal.fire({
@@ -84,7 +74,7 @@ const IndexUser = () => {
                             text: response.data.message,
                             confirmButtonText: "OK",
                         }).then(() => {
-                            getAllUser();
+                            getAllRole();
                         });
                     })
                     .catch((error) => {
@@ -95,61 +85,41 @@ const IndexUser = () => {
                             confirmButtonText: "OK",
                         });
                     });
-            } else if (result.isDenied) {
+            } else if (result.dismiss) {
                 Swal.fire('Changes are not saved', '', 'info')
             }
         })
     };
 
-    const handleAddUser = () => {
-        navigate('/AddUser');
-    }
-
     return (
         <div>
+            <div className='flex justify-end'>
+                <Button
+                    id='Add Button'
+                    label='Add Devisi'
+                    color='bg-primary'
+                    hover='bg-sky-500'
+                    onClick={hanldeAddDevisi}
+                    src={'add-to-queue'}
+                />
+            </div>
             <main>
-                <div className='flex justify-end'>
-                    <Button
-                        id='Add Button'
-                        label='Add User'
-                        color='bg-primary'
-                        hover='bg-sky-700'
-                        onClick={handleAddUser}
-                        src={'user-add'}
-                    />
-                </div>
-
                 <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
                     <div className='relative overflow-x-auto'>
                         <table className="min-w-full table-auto bg-white shadow">
                             <thead className=" bg-sky-900">
                                 <tr className="text-white">
-                                    <th className="p-2 border">No. </th>
-                                    <th className="p-6 border">Nama Lengkap</th>
-                                    <th className="p-4 border">Email</th>
-                                    <th className="p-4 border">Division</th>
-                                    <th className="p-4 border">Role</th>
-                                    <th className="p-4 border">Status</th>
-                                    <th className="p-5 border">Action</th>
+                                    <th className="w-32 p-3 border ">No. </th>
+                                    <th className="p-3 border">Nama</th>
+                                    <th className="w-64 p-5 border">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {User && User.map((item: any, index) => (
-                                    <tr key={index} className='bg-white hover:bg-blue-50'>
-                                        <td className="p-2 border text-center">{index + 1}.</td>
-                                        <td className="p-4 border text-center">{item?.nama_lengkap}</td>
-                                        <td className="p-4 border text-center">{item?.surel}</td>
-                                        <td className="p-4 border text-center">{item?.devisi?.nama}</td>
-                                        <td className="p-4 border text-center">{item?.role.nama}</td>
-                                        <td className="p-4 border text-center">{item?.status ? "Active" : "Inactive"}</td>
-                                        <td className='flex justify-center p-5 border gap-3'>
-                                            <Button
-                                                id='Detail Button'
-                                                color='bg-info'
-                                                hover='bg-green-200'
-                                                onClick={() => DetailTo(item?.id)}
-                                                src='info'
-                                            />
+                                {role && role.map((item: any, index: any) => (
+                                    <tr key={index}>
+                                        <td className="w-32 border text-center">{index + 1}.</td>
+                                        <td className="p-4 w-auto border text-center">{item?.nama}</td>
+                                        <td className='flex justify-center p-3 w-64 border gap-3'>
                                             <Button
                                                 id='Edit Button'
                                                 color='bg-warning'
@@ -176,4 +146,4 @@ const IndexUser = () => {
     )
 }
 
-export default IndexUser
+export default IndexDevisi

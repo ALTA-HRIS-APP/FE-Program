@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const AddPresensi = ({ addDataToAPI, refreshTable }) => {
   const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ const AddPresensi = ({ addDataToAPI, refreshTable }) => {
     });
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e: any) => {
     const { name, files } = e.target;
     setFormData({
       ...formData,
@@ -29,7 +29,7 @@ const AddPresensi = ({ addDataToAPI, refreshTable }) => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     await addDataToAPI(formData);

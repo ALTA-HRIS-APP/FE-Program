@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const InputAddEmploye = ({ addDataToAPI, refreshTable }) => {
   const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ const InputAddEmploye = ({ addDataToAPI, refreshTable }) => {
     bpjsFile: null,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -21,7 +21,7 @@ const InputAddEmploye = ({ addDataToAPI, refreshTable }) => {
     });
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e: any) => {
     const { name, files } = e.target;
     setFormData({
       ...formData,
