@@ -42,7 +42,6 @@ export default function App() {
           <Route path="/Profile" element={<Profile />} />
         </Routes>
       </Layout>
-
     </BrowserRouter>
   );
 }
