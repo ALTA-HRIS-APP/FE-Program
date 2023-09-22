@@ -23,14 +23,9 @@ const TablePresensi = ({ data }) => {
             <tr key={item.id}>
               <td className="px-4 py-2">{index + 1}</td>
               <td className="px-4 py-2">
-                <div className="flex gap-3 items-center font-semibold">
-                  <img
-                    src="src/assets/person.png" // Ganti backslash menjadi slash ("/") untuk path gambar
-                    className="rounded-full w-10 h-10"
-                    alt="Person"
-                  />
+                <h3 className="flex gap-3 items-center font-semibold">
                   {item.full_name}
-                </div>
+                </h3>
               </td>
               <td className="px-4 py-2 text-center">{item.id}</td>
               <td className="px-4 py-2 text-center">{item.date}</td>

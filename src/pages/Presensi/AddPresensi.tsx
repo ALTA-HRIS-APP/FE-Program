@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const InputAddEmploye = ({ addDataToAPI, refreshTable }) => {
+const AddPresensi = ({ addDataToAPI, refreshTable }) => {
   const [formData, setFormData] = useState({
     name: "",
     nik: "",
@@ -219,4 +219,4 @@ const InputAddEmploye = ({ addDataToAPI, refreshTable }) => {
   );
 };
 
-export default InputAddEmploye;
+export default AddPresensi;
