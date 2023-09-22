@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import axios from 'axios';
 
 import Button from '../../components/element/Button';
@@ -22,7 +22,7 @@ const DetailUser = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const id = location?.state?.id;
-  const token = Cookies.get('token');
+  // const token = Cookies.get('token');
 
   const handleBack = () => {
     navigate(-1)
@@ -121,12 +121,12 @@ const DetailUser = () => {
               <tr>
                 <td>Devisi</td>
                 <td>:</td>
-                <td>{detailUser.devisi.nama}</td>
+                {/* <td>{detailUser?.devisi?.nama}</td> */}
               </tr>
               <tr>
                 <td>Role</td>
                 <td>:</td>
-                <td>{detailUser.role.nama}</td>
+                {/* <td>{detailUser.role.nama}</td> */}
               </tr>
             </table>
           </div>
