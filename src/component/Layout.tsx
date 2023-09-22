@@ -9,7 +9,8 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className=" flex h-full">
+
+    <div className=" flex h-screen bg-DEE4EE">
       <SideBar />
       <div className=" flex-1 flex flex-col py-5 px-10">
         <Header

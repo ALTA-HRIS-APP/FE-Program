@@ -8,9 +8,10 @@ const SideBar = () => {
 
   const Menus = [
     { title: "Dashboard", src: "Dashboard", path: "/Dashboard" },
-    { title: "User Management", src: "Dashboard", path: "/User" },
-    { title: "Role Management", src: "Dashboard", path: "/Role" },
-    { title: "Employee Level", src: "Dashboard", path: "/user" },
+    { title: "User Management", src: "user-management", path: "/User" },
+    { title: "Role Management", src: "management", path: "/Role" },
+    { title: "Employee Level", src: "employee-job", path: "/EmployeeLevel" },
+    { title: "Devisi Management", src: "Employe", path: "/Devisi" },
     { title: "Presensi", src: "Presensi", path: "/presensi" },
     { title: "Reimbursement", src: "Remburse", path: "/reimbursement" },
     { title: "Time Off", src: "time-management-svgrepo-com", path: "/timeoff" },
@@ -48,19 +49,22 @@ const SideBar = () => {
             }`}
           />
         </div>
-        <ul className="pt-12">
+        <ul className="pt-5">
           {Menus.map((Menu, index) => (
             <Link to={Menu.path} key={index}>
               <li
-                className={`flex  rounded-md p-2 cursor-pointer hover:bg-sky-700 active:bg-blue-600 text-white text-lg items-center font-semibold gap-x-4 
-                ${Menu.gap ? "mt-12" : "mt-4"} ${
+                className={`flex  rounded-md p-2 cursor-pointer hover:bg-sky-700 active:bg-blue-600 text-white  items-center font-semibold gap-x-5 
+                ${Menu.gap ? "mt-12" : "mt-2"} ${
                   location.pathname === Menu.path ? "bg-blue-600" : ""
                 } `}
                 onClick={() => setActiveMenu(Menu.title)}
               >
-                <img src={`./src/assets/${Menu.src}.svg`} />
+                <img
+                  className=" w-5 h-5"
+                  src={`./src/assets/${Menu.src}.svg`}
+                />
                 <span
-                  className={`${!open && "hidden"} origin-left duration-200 `}
+                  className={`${!open && "hidden"} origin-left duration-500 `}
                 >
                   {Menu.title}
                 </span>

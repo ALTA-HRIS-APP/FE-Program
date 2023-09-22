@@ -17,8 +17,8 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
   const location = useLocation();
   const [pageTitle, setPageTitle] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const role = Cookies.get("role");
-  const email = Cookies.get("email");
+  // const role = Cookies.get("role");
+  // const email = Cookies.get("email");
   const navigate = useNavigate();
 
   const toggleDropdown = () => {
@@ -31,18 +31,44 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
       switch (pathname) {
         case "/Dashboard":
           return "Dashboard";
+        case "/User":
+          return "User Management";
+        case "/AddUser":
+          return "Add User";
+        case "/DetailUser":
+          return "Detil User";
+        case "/Role":
+          return "Role Management";
+        case "/AddRole":
+          return "Role Management";
+        case "/Division":
+          return "Devision Management";
+        case "/EmployeeLevel":
+          return "Employee Level Management";
+        case "/AddEmployeeLevel":
+          return "Add Employee Level Management";
         case "/presensi":
           return "Presensi";
         case "/reimbursement":
           return "Reimbursement";
         case "/reimbursement/:id":
           return "User Reimbursement";
+        case "/AddPresensi":
+          return "Add Presensi";
         case "/timeoff":
           return "Time Off";
         case "/target":
           return "Target";
         case "/employe":
-          return "Employe";
+          return "Employe Management";
+        case "/AddEmploye":
+          return "Add Employe Management";
+        case "/profile":
+          return "Profile";
+        case "/Devisi":
+          return "Devisi Management";
+        case "/TambahDevisi":
+          return "Tambah Devisi Management";
         default:
           return "Halaman Tidak Ditemukan";
       }
@@ -50,33 +76,29 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
     setPageTitle(getTitleFromPath(location.pathname));
   }, [location.pathname]);
 
-  //fungsi logika untuk logout
   const handleLogout = () => {
     Swal.fire({
       title: "Apakah anda ingin Logout?",
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "YES",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Cookies.remove("username");
-        Cookies.remove("token");
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "Success Logout",
-          confirmButtonText: "OK",
-          cancelButtonText: "Cancel",
-        }).then((response) => {
-          if (response?.isConfirmed) {
-            navigate("/");
-          }
-        });
-      }
+    }).then(() => {
+      Cookies.remove("username");
+      Cookies.remove("token");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Success Logout",
+        confirmButtonText: "OK",
+        cancelButtonText: "Cancel",
+      }).then((response) => {
+        if (response?.isConfirmed) {
+          navigate("/");
+        }
+      });
     });
   };
 
-  // logika untuk tida menampilkan header pada landingpage
   if (location.pathname === "/") {
     return null;
   }
@@ -100,7 +122,7 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           <IoIosArrowDown />
         </button>
         {dropdownOpen && (
-          <div className="origin-top-right absolute mt-2 w-48 rounded-md shadow-lg bg-slate-300 ring-1 ring-black ring-opacity-5">
+          <div className="origin-top-right absolute mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ">
             <div
               className="py-1"
               role="menu"
@@ -108,18 +130,11 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
               aria-labelledby="options-menu"
             >
               <a
-                href="#"
+                href="/profile"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 role="menuitem"
               >
                 Profile
-              </a>
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                role="menuitem"
-              >
-                Settings
               </a>
               <a
                 onClick={handleLogout}
