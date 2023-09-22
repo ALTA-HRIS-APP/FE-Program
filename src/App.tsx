@@ -7,12 +7,14 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Presensi from "./pages/Presensi/Presensi";
 import TimeOff from "./pages/TimeOff/TimeOff";
+import Reimbursement from "./pages/Reimbursement/Reimbursement";
 import Target from "./pages/Target/Target";
 import Employe from "./pages/Employe/Employe";
 import IndexRole from "./pages/RoleManagement/IndexRole";
 import AddRole from "./pages/RoleManagement/AddRole";
 import EditRole from "./pages/RoleManagement/EditRole";
 import IndexUser from "./pages/UserManagement/IndexUser";
+import UserReimbursement from "./pages/Reimbursement/UserReimbursement";
 import AddUser from "./pages/UserManagement/AddUser";
 import DetailUser from "./pages/UserManagement/DetailUser";
 import EditUser from "./pages/UserManagement/EditUser";
@@ -21,7 +23,6 @@ import EditEmployeeLevel from "./pages/EmployeeLevel/EditEmployeeLevel";
 import IndexDevisi from "./pages/DevisiManagement/IndexDevisi";
 import TambahDevisi from "./pages/DevisiManagement/TambahDevisi";
 import EditDevisi from "./pages/DevisiManagement/EditDevisi";
-
 
 export default function App() {
   axios.defaults.baseURL = "https://project2.otixx.online/";
@@ -42,6 +43,8 @@ export default function App() {
           <Route path="/EditEmployeeLevel/:id" element={<EditEmployeeLevel />} />
           <Route path="/Presensi" element={<Presensi />} />
           <Route path="/TimeOff" element={<TimeOff />} />
+          <Route path="/Reimbursement" element={<Reimbursement />} />
+          <Route path="/Reimbursement/:id" element={<UserReimbursement />} />
           <Route path="/Target" element={<Target />} />
           <Route path="/Employe" element={<Employe />} />
           {/* <Route path="/AddEmploye" element={<AddEmploye />} /> */}

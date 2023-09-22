@@ -13,10 +13,15 @@ const SideBar = () => {
     { title: "Employee Level", src: "employee-job", path: "/EmployeeLevel" },
     { title: "Devisi Management", src: "Employe", path: "/Devisi" },
     { title: "Presensi", src: "Presensi", path: "/presensi" },
-    { title: "Rembursement", src: "Remburse", path: "/rembursement" },
+    { title: "Reimbursement", src: "Remburse", path: "/reimbursement" },
     { title: "Time Off", src: "time-management-svgrepo-com", path: "/timeoff" },
     { title: "Target", src: "Target", path: "/target" },
     { title: "Employe", src: "Employe", path: "/employe" },
+    {
+      title: "User Reimbursement",
+      src: "Remburse",
+      path: "/reimbursement/:id",
+    },
   ];
 
   if (location.pathname === "/") {
@@ -28,7 +33,7 @@ const SideBar = () => {
       <div
         className={` ${
           open ? "w-64" : "w-20 "
-        } bg-sky-900 h-screen p-5  pt-8 relative duration-300`}
+        } bg-sky-900 h-full p-5  pt-8 relative duration-300`}
       >
         <img
           src="src\assets\control.png"
