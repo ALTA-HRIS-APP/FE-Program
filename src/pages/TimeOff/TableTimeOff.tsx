@@ -11,7 +11,7 @@ const TableTimeOff = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://virtserver.swaggerhub.com/BE-18/ABSENSI/1.0.0/absensis"
+        "https://virtserver.swaggerhub.com/WAYANPUTRIYANTI1502_1/HRIS/1.0.2/cutis"
       );
       setData(response.data.data); // Ganti "response.data" menjadi "response.data.data" sesuai dengan struktur data yang diterima
     } catch (error) {
@@ -42,19 +42,19 @@ const TableTimeOff = () => {
               <td className="px-4 py-2">
                 <div className="flex gap-3 items-center font-semibold">
                   <img
-                    src="src/assets/person.png"
+                    src={item.url_pendukung}
                     className="rounded-full w-10 h-10"
                     alt="Person"
                   />
-                  {item.full_name ? item.full_name : "N/A"}
+                  {item.name ? item.name : "N/A"}
                 </div>
               </td>
-              <td className="px-4 py-2 text-center">{item.id}</td>
+              <td className="px-4 py-2 text-center">{item.tipe_cuti}</td>
               <td className="px-4 py-2 text-center">{item.date}</td>
-              <td className="px-4 py-2 text-center">{item.jam_masuk}</td>
-              <td className="px-4 py-2 text-center">{item.jam_keluar}</td>
-              <td className="px-4 py-2 text-center">{item.check_in}</td>
-              <td className="px-4 py-2 text-center">{item.check_out}</td>
+              <td className="px-4 py-2 text-center">{item.jumlah_cuti} hari</td>
+              <td className="px-4 py-2 text-center">{item.description}</td>
+              <td className="px-4 py-2 text-center"></td>
+              <td className="px-4 py-2 text-center">{item.status}</td>
             </tr>
           ))}
         </tbody>

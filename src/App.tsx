@@ -22,6 +22,7 @@ import IndexDevisi from "./pages/DevisiManagement/IndexDevisi";
 import TambahDevisi from "./pages/DevisiManagement/tambahDevisi";
 import EditDevisi from "./pages/DevisiManagement/EditDevisi";
 
+
 export default function App() {
   axios.defaults.baseURL = "https://project2.otixx.online/";
   return (
@@ -39,16 +40,18 @@ export default function App() {
           <Route path="/EmployeeLevel" element={<EmployeeLevel />} />
           <Route path="/AddEmployeeLevel" element={<AddEmployeeLevel />} />
           <Route path="/Presensi" element={<Presensi />} />
+          <Route path="/AddPresensi" element={<AddPresensi />} />
+
           <Route path="/TimeOff" element={<TimeOff />} />
           <Route path="/Target" element={<Target />} />
           <Route path="/Employe" element={<Employe />} />
+          <Route path="/AddEmploye" element={<AddEmploye />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Devisi" element={<IndexDevisi />} />
           <Route path="/TambahDevisi" element={<TambahDevisi />} />
           <Route path="/EditDevisi/:id" element={<EditDevisi />} />
         </Routes>
       </Layout>
-
     </BrowserRouter>
   );
 }
