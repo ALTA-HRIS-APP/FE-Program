@@ -10,15 +10,18 @@ import TimeOff from "./pages/TimeOff/TimeOff";
 
 import Target from "./pages/Target/Target";
 import Employe from "./pages/Employe/Employe";
-import AddEmploye from "./pages/Employe/AddEmploye";
 import IndexRole from "./pages/RoleManagement/IndexRole";
 import AddRole from "./pages/RoleManagement/AddRole";
 import IndexUser from "./pages/UserManagement/IndexUser";
 import AddUser from "./pages/UserManagement/AddUser";
 import DetailUser from "./pages/UserManagement/DetailUser";
+import EditUser from "./pages/UserManagement/EditUser";
 import EmployeeLevel from "./pages/EmployeeLevel/indexEmployeeLevel";
 import AddEmployeeLevel from "./pages/EmployeeLevel/AddEmployeeLevel";
-import AddPresensi from "./pages/Presensi/AddPresensi";
+import IndexDevisi from "./pages/DevisiManagement/IndexDevisi";
+import TambahDevisi from "./pages/DevisiManagement/tambahDevisi";
+import EditDevisi from "./pages/DevisiManagement/EditDevisi";
+
 
 export default function App() {
   axios.defaults.baseURL = "https://project2.otixx.online/";
@@ -31,6 +34,7 @@ export default function App() {
           <Route path="/User" element={<IndexUser />} />
           <Route path="/AddUser" element={<AddUser />} />
           <Route path="/DetailUser/:id" element={<DetailUser />} />
+          <Route path="/EditUser/:id" element={<EditUser />} />
           <Route path="/Role" element={<IndexRole />} />
           <Route path="/AddRole" element={<AddRole />} />
           <Route path="/EmployeeLevel" element={<EmployeeLevel />} />
@@ -39,11 +43,13 @@ export default function App() {
           <Route path="/AddPresensi" element={<AddPresensi />} />
 
           <Route path="/TimeOff" element={<TimeOff />} />
-          {/* <Route path="/Remburse" element={<Remburse />} /> */}
           <Route path="/Target" element={<Target />} />
           <Route path="/Employe" element={<Employe />} />
           <Route path="/AddEmploye" element={<AddEmploye />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/Devisi" element={<IndexDevisi />} />
+          <Route path="/TambahDevisi" element={<TambahDevisi />} />
+          <Route path="/EditDevisi/:id" element={<EditDevisi />} />
         </Routes>
       </Layout>
     </BrowserRouter>

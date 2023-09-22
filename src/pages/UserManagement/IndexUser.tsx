@@ -26,12 +26,11 @@ const IndexUser = () => {
             })
         } else {
             axios
-                .get("user")
-                // .get("http://pintu2.otixx.online/user", {
-                //     headers: {
-                //         Authorization: `Bearer ${token}`
-                //     },
-                // })
+                .get("user", {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                })
                 .then((response) => {
                     console.log(response?.data?.meta?.data);
                     setUser(response?.data?.meta?.data);
@@ -55,7 +54,7 @@ const IndexUser = () => {
     };
 
     const handleEdit = (id: number) => {
-        navigate(`/user/${id}`, {
+        navigate(`/EditUser/${id}`, {
             state: {
                 id: id,
             }
@@ -125,8 +124,7 @@ const IndexUser = () => {
                         <table className="min-w-full table-auto bg-white shadow">
                             <thead className=" bg-sky-900">
                                 <tr className="text-white">
-                                    <th className="p-2 border text-left">No. </th>
-                                    <th className="p-0 border">Id</th>
+                                    <th className="p-2 border">No. </th>
                                     <th className="p-6 border">Nama Lengkap</th>
                                     <th className="p-4 border">Email</th>
                                     <th className="p-4 border">Division</th>
@@ -137,15 +135,14 @@ const IndexUser = () => {
                             </thead>
                             <tbody>
                                 {User && User.map((item: any, index) => (
-                                    <tr id={item?.id} className='bg-white hover:bg-blue-50'>
-                                        <td className="p-2 border text-left">{index + 1}.</td>
-                                        <td className="p-0 border text-center">{item?.id}</td>
+                                    <tr key={index} className='bg-white hover:bg-blue-50'>
+                                        <td className="p-2 border text-center">{index + 1}.</td>
                                         <td className="p-4 border text-center">{item?.nama_lengkap}</td>
                                         <td className="p-4 border text-center">{item?.surel}</td>
-                                        <td className="p-4 border text-center">{item?.devisi.nama}</td>
+                                        <td className="p-4 border text-center">{item?.devisi?.nama}</td>
                                         <td className="p-4 border text-center">{item?.role.nama}</td>
                                         <td className="p-4 border text-center">{item?.status ? "Active" : "Inactive"}</td>
-                                        <td className='flex content-center p-5 border gap-3'>
+                                        <td className='flex justify-center p-5 border gap-3'>
                                             <Button
                                                 id='Detail Button'
                                                 color='bg-info'
@@ -169,7 +166,7 @@ const IndexUser = () => {
                                             />
                                         </td>
                                     </tr>
-                                ))};
+                                ))}
                             </tbody>
                         </table>
                     </div>

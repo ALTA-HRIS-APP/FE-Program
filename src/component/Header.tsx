@@ -35,7 +35,7 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           return "User Management";
         case "/AddUser":
           return "Add User";
-        case "/DetailUser/:id":
+        case "/DetailUser":
           return "Detil User";
         case "/Role":
           return "Role Management";
@@ -63,6 +63,10 @@ const Header: FC<headerProps> = ({ id, name, job, image }) => {
           return "Add Employe Management";
         case "/profile":
           return "Profile";
+        case "/Devisi":
+          return "Devisi Management";
+        case "/TambahDevisi":
+          return "Tambah Devisi Management";
         default:
           return "Halaman Tidak Ditemukan";
       }
