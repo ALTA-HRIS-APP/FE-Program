@@ -1,17 +1,44 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from "axios";
+import { useLocation, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 import Swal from 'sweetalert2';
 
 import Button from '../../components/element/Button';
 
-const AddUser = () => {
-    const token = Cookies.get('token');
+interface editUserProps {
+    id: string;
+    nama_lengkap?: string;
+    surel?: string;
+    no_hp?: string;
+    jabatan?: string;
+    employee_status?: string;
+    devisiId?: string;
+    roleId?: string;
+    status: boolean;
+}
+
+const EditUser = () => {
+    const location = useLocation();
+    const id = location?.state?.id;
     const navigate = useNavigate();
+    const token = Cookies.get('token');
     const handleBack = () => {
         navigate(-1)
     }
+
+    const [userData, setUserData] = useState<editUserProps>({
+        id: '',
+        nama_lengkap: '',
+        surel: '',
+        no_hp: '',
+        jabatan: '',
+        employee_status: '',
+        devisiId: '',
+        roleId: '',
+        status: false,
+    })
+
     const [divisionOption, setDivisionOption] = useState([]);
     const getDivision = () => {
         axios
@@ -24,6 +51,7 @@ const AddUser = () => {
                 console.log(error);
             })
     }
+
     const [roleOption, setRoleOption] = useState([]);
     const getRoleData = () => {
         if (token === undefined) {
@@ -51,32 +79,41 @@ const AddUser = () => {
         }
 
     }
-    useEffect(() => {
-        getDivision();
-        getRoleData();
-    }, []);
-    const [formData, setFormData] = useState({
-        nama_lengkap: '',
-        surel: '',
-        no_hp: '',
-        jabatan: '',
-        devisiId: '',
-        roleId: '',
-        employee_status: '',
-        status: false,
-    });
+
     const handleChange = (e: any) => {
-        // setFormData({ ...formData, [e.target.name]: e.target.value });
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setUserData({
+            ...userData,
             [name]: name === 'status' ? value === 'true' : value,
         });
     }
 
+    const getEditUserData = (id: any) => {
+        axios
+            .get(`user/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                }
+            })
+            .then((response) => {
+                console.log("hasil get: ", response?.data?.data);
+                setUserData(response?.data?.data);
+            })
+            .catch((error) => {
+                console.log("Error:", error);
+            })
+
+    }
+
+    useEffect(() => {
+        getEditUserData(id);
+        getDivision();
+        getRoleData();
+    }, [id]);
+
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        axios.post('user', formData, {
+        axios.put('user', userData, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -103,16 +140,18 @@ const AddUser = () => {
     return (
         <div>
             <main>
-                <Button
-                    id='Back'
-                    label='Back'
-                    color='bg-primary'
-                    hover='bg-blue-700'
-                    width='32'
-                    height='10'
-                    src='arrow-left'
-                    onClick={handleBack}
-                />
+                <div>
+                    <Button
+                        id='Back'
+                        label='Back'
+                        color='bg-primary'
+                        hover='bg-blue-700'
+                        width='32'
+                        height='10'
+                        src='arrow-left'
+                        onClick={handleBack}
+                    />
+                </div>
                 <div className='p-4 max-w-full bg-white rounded-lg mt-5'>
                     <form onSubmit={handleSubmit}>
                         <div className='flex gap-5'>
@@ -127,7 +166,7 @@ const AddUser = () => {
                                         id='nama_lengkap'
                                         name='nama_lengkap'
                                         placeholder='Input Nama Lengkap'
-                                        value={formData.nama_lengkap}
+                                        value={userData.nama_lengkap}
                                         onChange={handleChange}
                                         required
                                         autoComplete='off'
@@ -144,7 +183,7 @@ const AddUser = () => {
                                         id='surel'
                                         name='surel'
                                         placeholder='Input Email'
-                                        value={formData.surel}
+                                        value={userData.surel}
                                         onChange={handleChange}
                                         required
                                         autoComplete='off'
@@ -161,7 +200,7 @@ const AddUser = () => {
                                         id='no_hp'
                                         name='no_hp'
                                         placeholder='Input Nomor HP'
-                                        value={formData.no_hp}
+                                        value={userData.no_hp}
                                         onChange={handleChange}
                                         className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
                                     />
@@ -174,7 +213,7 @@ const AddUser = () => {
                                     <select
                                         id='jabatan'
                                         name='jabatan'
-                                        value={formData.jabatan}
+                                        value={userData.jabatan}
                                         onChange={handleChange}
                                         className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
                                     >
@@ -195,7 +234,7 @@ const AddUser = () => {
                                     <select
                                         id='devisiId'
                                         name='devisiId'
-                                        value={formData.devisiId}
+                                        value={userData.devisiId}
                                         onChange={handleChange}
                                         className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
                                     >
@@ -213,7 +252,7 @@ const AddUser = () => {
                                     <select
                                         id='roleId'
                                         name='roleId'
-                                        value={formData.roleId}
+                                        value={userData.roleId}
                                         onChange={handleChange}
                                         className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
                                     >
@@ -231,7 +270,7 @@ const AddUser = () => {
                                     <select
                                         id='employee_status'
                                         name='employee_status'
-                                        value={formData.employee_status}
+                                        value={userData.employee_status}
                                         onChange={handleChange}
                                         className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
                                     >
@@ -248,7 +287,7 @@ const AddUser = () => {
                                     <select
                                         id='status'
                                         name='status'
-                                        value={formData.status.toString()}
+                                        value={userData.status.toString()}
                                         onChange={handleChange}
                                         className="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-light bg-white"
                                     >
@@ -260,16 +299,18 @@ const AddUser = () => {
                             </div>
                         </div>
                         <div className='flex justify-end text-center'>
-                            <button type='submit' className='bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-lg flex gap-3'>Submit<img src="./src/assets/save-2.svg" alt="save-2" /></button>
+                            <button
+                                type='submit'
+                                className='bg-primary hover:bg-blue-500 text-white  font-bold py-2 px-4 rounded-lg flex gap-3'
+                            >Submit
+                                <img src="./src/assets/save-2.svg" alt="save-2" />
+                            </button>
                         </div>
-
                     </form>
-
                 </div>
             </main>
         </div>
-
     )
 }
 
-export default AddUser
+export default EditUser

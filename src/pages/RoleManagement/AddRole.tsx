@@ -2,9 +2,9 @@ import { useState } from 'react';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import Button from '../../components/element/Button'
-import Swal from 'sweetalert2';
 
 const AddRole = () => {
     const token = Cookies.get('token');

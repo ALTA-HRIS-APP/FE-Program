@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 
 const SideBar = () => {
@@ -11,6 +11,7 @@ const SideBar = () => {
     { title: "User Management", src: "user-management", path: "/User" },
     { title: "Role Management", src: "management", path: "/Role" },
     { title: "Employee Level", src: "employee-job", path: "/EmployeeLevel" },
+    { title: "Devisi Management", src: "Employe", path: "/Devisi" },
     { title: "Presensi", src: "Presensi", path: "/presensi" },
     { title: "Rembursement", src: "Remburse", path: "/rembursement" },
     { title: "Time Off", src: "time-management-svgrepo-com", path: "/timeoff" },

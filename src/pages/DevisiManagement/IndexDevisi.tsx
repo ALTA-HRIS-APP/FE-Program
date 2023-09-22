@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 
 import Button from '../../components/element/Button';
 
-const IndexRole = () => {
+const IndexDevisi = () => {
     const token = Cookies.get('token');
     const [role, setRole] = useState<[]>([]);
     const getAllRole = () => {
@@ -24,7 +24,7 @@ const IndexRole = () => {
             })
         } else {
             axios
-                .get("role")
+                .get("devisi")
                 .then((response) => {
                     console.log("hasil : ", response?.data?.data);
                     setRole(response?.data?.data);
@@ -40,8 +40,16 @@ const IndexRole = () => {
     }, []);
 
     const navigate = useNavigate();
-    const handleAddRole = () => {
-        navigate('/AddRole');
+    const hanldeAddDevisi = () => {
+        navigate('/TambahDevisi');
+    }
+
+    const handleEdit = (id: number) => {
+        navigate(`/EditDevisi/${id}`, {
+            state: {
+                id: id,
+            }
+        });
     }
 
     const handleDelete = (id: number) => {
@@ -53,12 +61,11 @@ const IndexRole = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                    .delete(`role/${id}`)
-                    // .delete(`role/${id}`, {
-                    //     headers: {
-                    //         Authorization: `Bearer ${token}`,
-                    //     },
-                    // })
+                    .delete(`devisi/${id}`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`,
+                        },
+                    })
                     .then((response) => {
                         console.log(response);
                         Swal.fire({
@@ -89,10 +96,10 @@ const IndexRole = () => {
             <div className='flex justify-end'>
                 <Button
                     id='Add Button'
-                    label='Add Role'
-                    color='bg-sky-500'
-                    hover='bg-sky-700'
-                    onClick={handleAddRole}
+                    label='Add Devisi'
+                    color='bg-primary'
+                    hover='bg-sky-500'
+                    onClick={hanldeAddDevisi}
                     src={'add-to-queue'}
                 />
             </div>
@@ -102,26 +109,22 @@ const IndexRole = () => {
                         <table className="min-w-full table-auto bg-white shadow">
                             <thead className=" bg-sky-900">
                                 <tr className="text-white">
-                                    <th className="p-3 border ">No. </th>
+                                    <th className="w-32 p-3 border ">No. </th>
                                     <th className="p-3 border">Nama</th>
-                                    <th className="p-auto border">Descripsion</th>
-                                    <th className="p-auto border">Status</th>
-                                    <th className="w-40 p-5 border">Action</th>
+                                    <th className="w-64 p-5 border">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {role && role.map((item: any, index: any) => (
                                     <tr key={index}>
-                                        <td className="border w-auto text-center">{index + 1}.</td>
+                                        <td className="w-32 border w-auto text-center">{index + 1}.</td>
                                         <td className="p-4 w-auto border text-center">{item?.nama}</td>
-                                        <td className="p-4 w-auto border text-center">{item?.description ? '...' : ''}</td>
-                                        <td className="p-4 w-auto border text-center">{item?.status ? 'Active' : 'Inactive'}</td>
-                                        <td className='flex justify-center p-3 w-40 border gap-3'>
+                                        <td className='flex justify-center p-3 w-64 border gap-3'>
                                             <Button
                                                 id='Edit Button'
                                                 color='bg-warning'
                                                 hover='bg-yellow-200'
-                                                // onClick={() => DetailTo(item?.id)}
+                                                onClick={() => handleEdit(item?.id)}
                                                 src='edit-3'
                                             />
                                             <Button
@@ -143,4 +146,4 @@ const IndexRole = () => {
     )
 }
 
-export default IndexRole
+export default IndexDevisi
