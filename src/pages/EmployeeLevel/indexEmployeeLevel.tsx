@@ -10,6 +10,47 @@ const indexEmployeeLevel = () => {
   const navigate = useNavigate();
   const token = Cookies.get('token');
   const [employee, setEmployee] = useState<[]>([]);
+  const handleEdit = (id: number) => {
+    navigate(`/EditEmployeeLevel/${id}`, {
+      state: {
+        id: id,
+      }
+    });
+  }
+
+  const handleDelete = (id: number) => {
+    Swal.fire({
+      title: 'Are You Sure For Delete?',
+      showCancelButton: true,
+      confirmButtonText: 'Yes!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`user/${id}`)
+          .then((response) => {
+            console.log(response);
+            Swal.fire({
+              icon: "success",
+              title: "Success",
+              text: response.data.message,
+              confirmButtonText: "OK",
+            }).then(() => {
+              getAllEmployee();
+            });
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Failed",
+              text: `Something went wrong : ${error}`,
+              confirmButtonText: "OK",
+            });
+          });
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+  };
   const getAllEmployee = () => {
     if (token === undefined) {
       Swal.fire({
@@ -25,12 +66,11 @@ const indexEmployeeLevel = () => {
       })
     } else {
       axios
-        .get("user")
-        // .get("http://pintu2.otixx.online/user", {
-        //     headers: {
-        //         Authorization: `Bearer ${token}`
-        //     },
-        // })
+        .get("user", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+        })
         .then((response) => {
           console.log(response?.data?.meta?.data);
           setEmployee(response?.data?.meta?.data);
@@ -71,7 +111,7 @@ const indexEmployeeLevel = () => {
                         <td className="p-4 w-auto border text-center">{item?.nama_lengkap}</td>
                         <td className="p-4 w-auto border text-center">{item?.jabatan}</td>
                         <td className="p-4 w-auto border text-center">{item?.employee_status}</td>
-                        <td className="p-4 w-auto border text-center">{ }</td>
+                        <td className="p-4 w-auto border text-center">{item?.createdAt}</td>
                         <td className="p-4 w-auto border text-center">{ }</td>
                         <td className="p-4 w-auto border text-center">{item?.surel}</td>
                         <td className='flex justify-center p-3 w-40 border gap-3'>
@@ -79,14 +119,14 @@ const indexEmployeeLevel = () => {
                             id='Edit Button'
                             color='bg-warning'
                             hover='bg-yellow-200'
-                            // onClick={() => DetailTo(item?.id)}
+                            onClick={() => handleEdit(item?.id)}
                             src='edit-3'
                           />
                           <Button
                             id='Delete Button'
                             color='bg-danger'
                             hover='bg-red-200'
-                            // onClick={() => handleDelete(item?.id)}
+                            onClick={() => handleDelete(item?.id)}
                             src='delete-2'
                           />
                         </td>
@@ -103,7 +143,7 @@ const indexEmployeeLevel = () => {
                     hover='bg-blue-500'
                     width='32'
                     height='10'
-                    // src='arrow-right'
+                  // src='arrow-right'
                   />
                   <Button
                     id='next'
@@ -112,7 +152,7 @@ const indexEmployeeLevel = () => {
                     hover='bg-blue-500'
                     width='32'
                     height='10'
-                    // src='arrow-right'
+                  // src='arrow-right'
                   />
                 </div>
               </div>

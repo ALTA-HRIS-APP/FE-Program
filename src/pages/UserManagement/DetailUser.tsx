@@ -43,11 +43,6 @@ const DetailUser = () => {
   const getDetailUser = (id: any) => {
     axios
       .get(`user/${id}`)
-      // .get(`user/${id}`, {
-      //     headers: {
-      //         Authorization: `Bearer ${token}`,
-      //     },
-      // })
       .then((response) => {
         console.log('Hasil user = ', response?.data?.data);
         setDetailUser(response?.data?.data);
