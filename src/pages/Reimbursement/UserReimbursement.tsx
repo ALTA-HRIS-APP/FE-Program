@@ -83,9 +83,12 @@ const UserReimbursement = () => {
 
   const getalldata = () => {
     axios
-      .get(`/reimbursements?page=${page}&itemsPerPage=8`, {
-        headers: { Authorization: "Bearer " + token },
-      })
+      .get(
+        `https://hris.belanjalagiyuk.shop/reimbursements?page=${page}&itemsPerPage=8`,
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      )
       .then((res) => {
         setData(res.data.data);
         setPages(res?.data?.next_page);
@@ -97,7 +100,7 @@ const UserReimbursement = () => {
 
   const getdatabyid = (id: string) => {
     axios
-      .get(`/reimbursements/${id}`, {
+      .get(`https://hris.belanjalagiyuk.shop/reimbursements/${id}`, {
         headers: { Authorization: "Bearer " + token },
       })
       .then((res) => {
@@ -123,7 +126,7 @@ const UserReimbursement = () => {
     formData.append("nominal", nominal);
     formData.append("description", description);
     axios
-      .post("/reimbursements", formData, {
+      .post("https://hris.belanjalagiyuk.shop/reimbursements", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -153,12 +156,16 @@ const UserReimbursement = () => {
     formData.append("description", editdescription);
 
     axios
-      .put(`/reimbursements/${editid}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .put(
+        `https://hris.belanjalagiyuk.shop/reimbursements/${editid}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then(() => {
         Swal.fire({
           icon: "success",
@@ -174,7 +181,7 @@ const UserReimbursement = () => {
 
   const handledelete = (id: number) => {
     axios
-      .delete(`/reimbursements/${id}`, {
+      .delete(`https://hris.belanjalagiyuk.shop/reimbursements/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

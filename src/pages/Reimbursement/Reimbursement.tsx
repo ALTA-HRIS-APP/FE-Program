@@ -41,9 +41,12 @@ const Reimbursement = () => {
 
   const getalldata = () => {
     axios
-      .get(`/reimbursements?page=${page}&itemsPerPage=8`, {
-        headers: { Authorization: "Bearer " + token },
-      })
+      .get(
+        `https://hris.belanjalagiyuk.shop/reimbursements?page=${page}&itemsPerPage=8`,
+        {
+          headers: { Authorization: "Bearer " + token },
+        }
+      )
       .then((res) => {
         setData(res.data.data);
         setPages(res?.data?.next_page);
@@ -56,7 +59,7 @@ const Reimbursement = () => {
   const handleapprove = (id: number | string) => {
     axios
       .put(
-        `/reimbursements/${id}`,
+        `https://hris.belanjalagiyuk.shop/reimbursements/${id}`,
         {
           persetujuan: "Accepted",
           status: "Done",
@@ -84,7 +87,7 @@ const Reimbursement = () => {
   const handlereject = (id: number | string) => {
     axios
       .put(
-        `/reimbursements/${id}`,
+        `https://hris.belanjalagiyuk.shop/reimbursements/${id}`,
         {
           persetujuan: "Rejected",
           status: "Done",
@@ -111,11 +114,14 @@ const Reimbursement = () => {
   };
   const handleSearch = () => {
     axios
-      .get(`/reimbursements?searchName=${search}&page=${page}&itemsPerPage=8`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        `https://hris.belanjalagiyuk.shop/reimbursements?searchName=${search}&page=${page}&itemsPerPage=8`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         setSearchData(res?.data?.data);
         setData(res.data.data);

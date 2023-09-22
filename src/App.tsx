@@ -12,10 +12,8 @@ import Employe from "./pages/Employe/Employe";
 import IndexRole from "./pages/RoleManagement/IndexRole";
 import IndexUser from "./pages/UserManagement/IndexUser";
 import UserReimbursement from "./pages/Reimbursement/UserReimbursement";
-import axios from "axios";
 
 export default function App() {
-  axios.defaults.baseURL = "https://hris.belanjalagiyuk.shop/";
   return (
     <BrowserRouter>
       <Layout>

@@ -48,13 +48,12 @@ const Target = () => {
 
   const getalldata = () => {
     axios
-      .get(`/targets`, {
+      .get(`https://hris.belanjalagiyuk.shop/targets`, {
         headers: { Authorization: "Bearer " + token },
       })
       .then((res) => {
         setData(res.data.data);
         setPages(res?.data?.next_page);
-        console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -77,7 +76,7 @@ const Target = () => {
     const formData = new FormData();
     formData.append("status", "completed");
     axios
-      .put(`/targets/${id}`, formData, {
+      .put(`https://hris.belanjalagiyuk.shop/targets/${id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
@@ -100,7 +99,7 @@ const Target = () => {
 
   const handledelete = (id: number) => {
     axios
-      .delete(`/targets/${id}`, {
+      .delete(`https://hris.belanjalagiyuk.shop/targets/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -126,12 +125,16 @@ const Target = () => {
     formData.append("status", "not completed");
 
     axios
-      .post("/user/54396f94-07b8-4450-8105-7c4472bf8701/targets", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        "https://hris.belanjalagiyuk.shop/user/54396f94-07b8-4450-8105-7c4472bf8701/targets",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then(() => {
         Swal.fire({
           icon: "success",
