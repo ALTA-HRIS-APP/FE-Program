@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-// import React from "react";
-=======
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +6,6 @@ import Button from "../../components/element/Button";
 import Modal from "../../component/Modal";
 import Tabletarget from "../../component/Tabletarget";
 import Swal from "sweetalert2";
->>>>>>> 1f47ecdc6d58413d5d46783f43688aef5196b4ff
 
 const Target = () => {
   const token = Cookies.get("token");
