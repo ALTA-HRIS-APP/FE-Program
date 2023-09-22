@@ -19,7 +19,7 @@ const TablePresensi = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
+          {data.map((item: any, index: any) => (
             <tr key={item.id}>
               <td className="px-4 py-2">{index + 1}</td>
               <td className="px-4 py-2">
