@@ -117,7 +117,7 @@ const IndexDevisi = () => {
                             <tbody>
                                 {role && role.map((item: any, index: any) => (
                                     <tr key={index}>
-                                        <td className="w-32 border w-auto text-center">{index + 1}.</td>
+                                        <td className="w-32 border text-center">{index + 1}.</td>
                                         <td className="p-4 w-auto border text-center">{item?.nama}</td>
                                         <td className='flex justify-center p-3 w-64 border gap-3'>
                                             <Button
