@@ -19,8 +19,6 @@ import AddUser from "./pages/UserManagement/AddUser";
 import DetailUser from "./pages/UserManagement/DetailUser";
 import EditUser from "./pages/UserManagement/EditUser";
 import EmployeeLevel from "./pages/EmployeeLevel/indexEmployeeLevel";
-import AddEmployeeLevel from "./pages/EmployeeLevel/AddEmployeeLevel";
-import AddTimeOff from "./pages/TimeOff/AddTimeOff";
 import EditEmployeeLevel from "./pages/EmployeeLevel/EditEmployeeLevel";
 import IndexDevisi from "./pages/DevisiManagement/IndexDevisi";
 import TambahDevisi from "./pages/DevisiManagement/TambahDevisi";
@@ -51,11 +49,9 @@ export default function App() {
           <Route path="/Employe" element={<Employe />} />
           {/* <Route path="/AddEmploye" element={<AddEmploye />} /> */}
           <Route path="/Profile" element={<Profile />} />
-          <Route path="/AddTimeOff" element={<AddTimeOff />} />
           <Route path="/Devisi" element={<IndexDevisi />} />
           <Route path="/TambahDevisi" element={<TambahDevisi />} />
           <Route path="/EditDevisi/:id" element={<EditDevisi />} />
-
         </Routes>
       </Layout>
     </BrowserRouter>

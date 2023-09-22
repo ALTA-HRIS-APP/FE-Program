@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import Cookies from "js-cookie";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Cookies from 'js-cookie';
 
-import Button from "../../components/element/Button";
+import Button from '../../components/element/Button';
 
 const IndexRole = () => {
     const token = Cookies.get('token');
@@ -24,7 +24,7 @@ const IndexRole = () => {
             })
         } else {
             axios
-                .get("http://project2.otixx.online/role")
+                .get("role")
                 .then((response) => {
                     console.log("hasil : ", response?.data?.data);
                     setRole(response?.data?.data);
@@ -33,58 +33,64 @@ const IndexRole = () => {
                     console.log(error);
                 })
         }
-
     }
-  };
 
-  useEffect(() => {
-    getAllRole();
-  }, []);
+    useEffect(() => {
+        getAllRole();
+    }, []);
 
     const navigate = useNavigate();
     const handleAddRole = () => {
         navigate('/AddRole');
     }
 
-  const handleDelete = (id: number) => {
-    Swal.fire({
-      title: "Are You Sure For Delete?",
-      showCancelButton: true,
-      cancelButtonText: "No, Cancel!",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axios
-          .delete(`role/${id}`)
-          // .delete(`role/${id}`, {
-          //     headers: {
-          //         Authorization: `Bearer ${token}`,
-          //     },
-          // })
-          .then((response) => {
-            console.log(response);
-            Swal.fire({
-              icon: "success",
-              title: "Success",
-              text: response.data.message,
-              confirmButtonText: "OK",
-            }).then(() => {
-              getAllRole();
-            });
-          })
-          .catch((error) => {
-            Swal.fire({
-              icon: "error",
-              title: "Failed",
-              text: `Something went wrong : ${error}`,
-              confirmButtonText: "OK",
-            });
-          });
-      } else if (result.dismiss) {
-        Swal.fire("Changes are not saved", "", "info");
-      }
-    });
-  };
+    const handleEdit = (id: number) => {
+        navigate(`/EditRole/${id}`, {
+            state: {
+                id: id,
+            }
+        });
+    }
+
+    const handleDelete = (id: number) => {
+        Swal.fire({
+            title: 'Are You Sure For Delete?',
+            showCancelButton: true,
+            cancelButtonText: "No, Cancel!",
+            confirmButtonText: 'Yes, delete it!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios
+                    .delete(`role/${id}`)
+                    // .delete(`role/${id}`, {
+                    //     headers: {
+                    //         Authorization: `Bearer ${token}`,
+                    //     },
+                    // })
+                    .then((response) => {
+                        console.log(response);
+                        Swal.fire({
+                            icon: "success",
+                            title: "Success",
+                            text: response.data.message,
+                            confirmButtonText: "OK",
+                        }).then(() => {
+                            getAllRole();
+                        });
+                    })
+                    .catch((error) => {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Failed",
+                            text: `Something went wrong : ${error}`,
+                            confirmButtonText: "OK",
+                        });
+                    });
+            } else if (result.dismiss) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
+    };
 
     return (
         <div>
@@ -104,28 +110,26 @@ const IndexRole = () => {
                         <table className="min-w-full table-auto bg-white shadow">
                             <thead className=" bg-sky-900">
                                 <tr className="text-white">
-                                    <th className="p-3 border text-left">No. </th>
-                                    <th className="p-auto border">Id</th>
+                                    <th className="p-3 border ">No. </th>
                                     <th className="p-3 border">Nama</th>
                                     <th className="p-auto border">Descripsion</th>
                                     <th className="p-auto border">Status</th>
-                                    <th className="p-5 border">Action</th>
+                                    <th className="w-40 p-5 border">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {role && role.map((item: any, index: any) => (
                                     <tr key={index}>
-                                        <td className="border text-center">{index + 1}.</td>
-                                        <td className="border text-center">{item?.id}</td>
-                                        <td className="p-4 border text-center">{item?.nama}</td>
-                                        <td className="p-4 border text-center">{item?.description ? '...' : ''}</td>
-                                        <td className="p-4 border text-center">{item?.status ? 'Active' : 'Inactive'}</td>
-                                        <td className='flex content-center p-5 border gap-3'>
+                                        <td className="border w-auto text-center">{index + 1}.</td>
+                                        <td className="p-4 w-auto border text-center">{item?.nama}</td>
+                                        <td className="p-4 w-auto border text-center">{item?.description ? '...' : ''}</td>
+                                        <td className="p-4 w-auto border text-center">{item?.status ? 'Active' : 'Inactive'}</td>
+                                        <td className='flex justify-center p-3 w-40 border gap-3'>
                                             <Button
                                                 id='Edit Button'
                                                 color='bg-warning'
                                                 hover='bg-yellow-200'
-                                                // onClick={() => DetailTo(item?.id)}
+                                                onClick={() => handleEdit(item?.id)}
                                                 src='edit-3'
                                             />
                                             <Button
@@ -147,4 +151,4 @@ const IndexRole = () => {
     )
 }
 
-export default IndexRole;
+export default IndexRole
